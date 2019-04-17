@@ -11,17 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('main');
-});
+Route::get('/', 'LandingPageController@index')->name('landing-page');
 
-Route::get('/products', function () {
-    return view('products');
-});
+Route::get('/shop', 'ShopController@index')->name('shop.index');
 
-Route::get('/product', function () {
-    return view('product');
-});
+Route::get('/shop/{product}', 'ShopController@show')->name('shop.show');
 
 Route::get('/cart', function () {
     return view('cart');
