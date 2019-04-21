@@ -116,7 +116,13 @@
                                                     <a href="#" title="Compare" tabindex="0"><i class="zmdi zmdi-refresh"></i></a>
                                                 </li>
                                                 <li>
-                                                    <a href="#" title="Add to cart" tabindex="0"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
+                                                    <form action="{{ route('cart.store') }}" method="POST">
+                                                        {{ csrf_field() }}
+                                                        <input type="hidden" name="id" value="{{ $product->id }}">
+                                                        <input type="hidden" name="name" value="{{ $product->name }}">
+                                                        <input type="hidden" name="price" value="{{ $product->price }}">
+                                                        <button type="submit"><a href="#" title="Add to cart" tabindex="0"><i class="zmdi zmdi-shopping-cart-plus"></i></a></button>
+                                                    </form>
                                                 </li>
                                             </ul>
                                         </div>
@@ -224,45 +230,45 @@
                         <div class="row">
                             <div class="active-related-product">
                                 <!-- product-item start -->
-                            @foreach($relatedProduct as $product)
-                            <div class="col-md-3 col-sm-4 col-xs-12">
-                                <div class="product-item">
-                                    <div class="product-img">
-                                        <a href="{{ route('shop.show', $product->slug) }}">
-                                        <img src="{{ asset('img/product/'. $product->slug .'.jpg') }}" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="{{ route('shop.show', $product->slug) }}">{{ $product->name }}</a>
-                                        </h6>
-                                        <div class="pro-rating">
-                                            <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                            <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                            <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                            <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
+                                @foreach($relatedProduct as $product)
+                                <div class="col-md-3 col-sm-4 col-xs-12">
+                                    <div class="product-item">
+                                        <div class="product-img">
+                                            <a href="{{ route('shop.show', $product->slug) }}">
+                                            <img src="{{ asset('img/product/'. $product->slug .'.jpg') }}" alt=""/>
+                                            </a>
                                         </div>
-                                        <h3 class="pro-price">{{ $product->presentPrice() }}</h3>
-                                        <ul class="action-button">
-                                            <li>
-                                                <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" data-toggle="modal"  data-target="#productModal" title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" title="Add to cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
-                                            </li>
-                                        </ul>
+                                        <div class="product-info">
+                                            <h6 class="product-title">
+                                                <a href="{{ route('shop.show', $product->slug) }}">{{ $product->name }}</a>
+                                            </h6>
+                                            <div class="pro-rating">
+                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
+                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
+                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
+                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
+                                                <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
+                                            </div>
+                                            <h3 class="pro-price">{{ $product->presentPrice() }}</h3>
+                                            <ul class="action-button">
+                                                <li>
+                                                    <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" data-toggle="modal"  data-target="#productModal" title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" title="Add to cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            @endforeach
-                            <!-- product-item end -->
+                                @endforeach
+                                <!-- product-item end -->
                             </div>
                         </div>
                     </div>
