@@ -2,6 +2,8 @@
 
 @section('content')
 
+<script src="https://js.stripe.com/v3/"></script>
+
 @section('breadcrumb')
     <h1 class="breadcrumbs-title">Checkout</h1>
     <ul class="breadcrumb-list">
@@ -15,6 +17,22 @@
     <!-- SHOP SECTION START -->
     <div class="shop-section mb-80">
         <div class="container">
+        @if (session()->has('success_message'))
+            <div class="spacer"></div>
+            <div class="alert alert-success">
+                {{ session()->get('success_message') }}
+            </div>
+        @endif
+
+        @if(count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
             <div class="row">
                 <div class="col-md-2">
                     <ul class="cart-tab">
@@ -307,52 +325,82 @@
                         <!-- checkout start -->
                         <div class="tab-pane active" id="checkout">
                             <div class="checkout-content box-shadow p-30">
-                                <form action="#">
+                                <form action="{{ route('checkout.store') }}" method="POST" id="payment-form" novalidate>
+                                    {{ csrf_field() }}
                                     <div class="row">
                                         <!-- billing details -->
                                         <div class="col-md-6">
-                                            <div class="billing-details pr-10">
-                                                <h6 class="widget-title border-left mb-20">billing details</h6>
-                                                <input type="text"  placeholder="Your Name Here...">
-                                                <input type="text"  placeholder="Email address here...">
-                                                <input type="text"  placeholder="Phone here...">
-                                                <input type="text"  placeholder="Company neme here...">
-                                                <select class="custom-select">
-                                                    <option value="defalt">country</option>
-                                                    <option value="c-1">Australia</option>
-                                                    <option value="c-2">Bangladesh</option>
-                                                    <option value="c-3">Unitd States</option>
-                                                    <option value="c-4">Unitd Kingdom</option>
-                                                </select>
-                                                <select class="custom-select">
-                                                    <option value="defalt">State</option>
-                                                    <option value="c-1">Melbourne</option>
-                                                    <option value="c-2">Dhaka</option>
-                                                    <option value="c-3">New York</option>
-                                                    <option value="c-4">London</option>
-                                                </select>
-                                                <select class="custom-select">
-                                                    <option value="defalt">Town/City</option>
-                                                    <option value="c-1">Victoria</option>
-                                                    <option value="c-2">Chittagong</option>
-                                                    <option value="c-3">Boston</option>
-                                                    <option value="c-4">Cambridge</option>
-                                                </select>
-                                                <textarea class="custom-textarea" placeholder="Your address here..."></textarea>
+                                            <div class="form-group">
+                                                <label for="email">Email Address</label>
+                                                @if (auth()->user())
+                                                    <input type="email" class="form-control" id="email" name="email" value="{{ auth()->user()->email }}" readonly>
+                                                @else
+                                                    <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
+                                                @endif
                                             </div>
+                                            <div class="form-group">
+                                                <label for="name">Name</label>
+                                                <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="address">Address</label>
+                                                <input type="text" class="form-control" id="address" name="address" value="{{ old('address') }}" required>
+                                            </div>
+
+                                            
+                                            <div class="form-group">
+                                                <label for="city">City</label>
+                                                <input type="text" class="form-control" id="city" name="city" value="{{ old('city') }}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="province">Province</label>
+                                                <input type="text" class="form-control" id="province" name="province" value="{{ old('province') }}" required>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="postalcode">Postal Code</label>
+                                                <input type="text" class="form-control" id="postalcode" name="postalcode" value="{{ old('postalcode') }}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="phone">Phone</label>
+                                                <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone') }}" required>
+                                            </div>
+
+                                            <h2 class="mt-50">Payment Details</h2>
+
+                                            <div class="form-group">
+                                                <label for="name_on_card">Name on Card</label>
+                                                <input type="text" class="form-control" id="name_on_card" name="name_on_card" value="">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="card-element">
+                                                Credit or debit card
+                                                </label>
+                                                <div id="card-element">
+                                                <!-- a Stripe Element will be inserted here. -->
+                                                </div>
+
+                                                <!-- Used to display form errors -->
+                                                <div id="card-errors" role="alert"></div>
+                                            </div>
+
+                                            <button type="submit" id="complete-order" class="submit-btn-1 mt-30 btn-hover-1">Complete Order</button>
+                                            <!-- payment details end -->
                                         </div>
                                         <div class="col-md-6">
                                             <!-- our order -->
                                             <div class="payment-details pl-10 mb-50">
                                                 <h6 class="widget-title border-left mb-20">our order</h6>
+                                                @foreach(Cart::content() as $item)
                                                 <table>
                                                     <tr>
-                                                        <td class="td-title-1">Dummy Product Name x 2</td>
-                                                        <td class="td-title-2">$1855.00</td>
+                                                        <td class="td-title-1">{{ $item->model->name }} x {{ $item->qty }}</td>
+                                                        <td class="td-title-2">{{ $item->model->presentPrice() }} * 2</td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="td-title-1">Dummy Product Name</td>
-                                                        <td class="td-title-2">$555.00</td>
+                                                        <td class="td-title-1">{{ $item->model->name }}</td>
+                                                        <td class="td-title-2">{{ $item->model->presentPrice() }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="td-title-1">Cart Subtotal</td>
@@ -371,6 +419,7 @@
                                                         <td class="order-total-price">$2425.00</td>
                                                     </tr>
                                                 </table>
+                                                @endforeach
                                             </div>
                                             <!-- payment-method -->
                                             <div class="payment-method">
@@ -421,7 +470,7 @@
                                                 </div>
                                             </div>
                                             <!-- payment-method end -->
-                                            <button class="submit-btn-1 mt-30 btn-hover-1" type="submit">place order</button>
+                                            {{-- <button class="submit-btn-1 mt-30 btn-hover-1" type="submit">place order</button> --}}
                                         </div>
                                     </div>
                                 </form>

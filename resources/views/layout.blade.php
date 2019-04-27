@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
     <!-- User style -->
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    <!-- Stripe css -->
+     <link rel="stylesheet" href="{{ asset('css/stripe.css') }}">
     
     <!-- Style customizer (Remove these two lines please) -->
     <link rel="stylesheet" href="{{ asset('css/style-customizer.css') }}">
@@ -1035,6 +1037,8 @@
     <script src="{{ asset('js/plugins.js') }}"></script>
     <!-- Main js file that contents all jQuery plugins activation. -->
     <script src="{{ asset('js/main.js') }}"></script>
+    <!-- Stripe js -->
+    <script src="{{ asset('js/stripe.js') }}"></script>
 
 </body>
     

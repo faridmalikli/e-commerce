@@ -29,12 +29,11 @@ Route::delete('/saveForLater/{product}', 'SaveForLaterController@destroy')->name
 
 Route::post('/saveForLater/switchtosaveforlater/{product}', 'SaveForLaterController@switchToCart')->name('saveForLater.switchToCart');
 
-Route::get('/checkout', function () {
-    return view('checkout');
-});
+Route::get('/checkout', 'CheckoutController@index')->name('checkout.index');
 
-Route::get('/thankyou', function () {
-    return view('thankyou');
-});
+Route::post('/checkout', 'CheckoutController@store')->name('checkout.store');
+
+Route::get('/thankyou', 'ConfirmationController@index')->name('confirmation.index');
+
 
 

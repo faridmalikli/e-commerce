@@ -4,9 +4,9 @@
 
 
 @section('breadcrumb')
-    <h1 class="breadcrumbs-title">Call to Action</h1>
+    <h1 class="breadcrumbs-title">Thank you for your order! A comfirmation e-mail has been sent!</h1>
     <ul class="breadcrumb-list">
-        <li><a href="index.html">Home</a></li>
+        <li><a href="{{ route('landing-page') }}">Home</a></li>
         <li>Call to Action</li>
     </ul>
 @stop
