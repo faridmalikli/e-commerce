@@ -1037,8 +1037,8 @@
     <script src="{{ asset('js/plugins.js') }}"></script>
     <!-- Main js file that contents all jQuery plugins activation. -->
     <script src="{{ asset('js/main.js') }}"></script>
-    <!-- Stripe js -->
-    <script src="{{ asset('js/stripe.js') }}"></script>
+
+    @yield('extra-js');
 
 </body>
     

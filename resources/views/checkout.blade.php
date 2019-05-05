@@ -378,10 +378,10 @@
                                                 Credit or debit card
                                                 </label>
                                                 <div id="card-element">
-                                                <!-- a Stripe Element will be inserted here. -->
+                                                <!-- A Stripe Element will be inserted here. -->
                                                 </div>
 
-                                                <!-- Used to display form errors -->
+                                                <!-- Used to display form errors. -->
                                                 <div id="card-errors" role="alert"></div>
                                             </div>
 
@@ -395,16 +395,17 @@
                                                 @foreach(Cart::content() as $item)
                                                 <table>
                                                     <tr>
-                                                        <td class="td-title-1">{{ $item->model->name }} x {{ $item->qty }}</td>
-                                                        <td class="td-title-2">{{ $item->model->presentPrice() }} * 2</td>
-                                                    </tr>
-                                                    <tr>
                                                         <td class="td-title-1">{{ $item->model->name }}</td>
                                                         <td class="td-title-2">{{ $item->model->presentPrice() }}</td>
                                                     </tr>
                                                     <tr>
+                                                        <td class="td-title-1">{{ $item->model->name }} x {{ $item->qty }}</td>
+                                                        <td class="td-title-2">{{ $item->model->presentPrice() }} * {{ $item->qty }}</td>
+                                                    </tr>
+                                                @endforeach
+                                                    <tr>
                                                         <td class="td-title-1">Cart Subtotal</td>
-                                                        <td class="td-title-2">$2410.00</td>
+                                                        <td class="td-title-2">{{ presentPrice(Cart::subtotal()) }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="td-title-1">Shipping and Handing</td>
@@ -416,10 +417,9 @@
                                                     </tr>
                                                     <tr>
                                                         <td class="order-total">Order Total</td>
-                                                        <td class="order-total-price">$2425.00</td>
+                                                        <td class="order-total-price">{{ presentPrice(Cart::total()) }}</td>
                                                     </tr>
                                                 </table>
-                                                @endforeach
                                             </div>
                                             <!-- payment-method -->
                                             <div class="payment-method">
@@ -586,3 +586,9 @@
 <!-- End page content -->
 
 @stop
+
+@section('extra-js')
+    <script src="{{ asset('js/stripe.js') }}"></script>
+@stop
+
+

@@ -101,11 +101,17 @@
                                                     </td>
                                                     <td class="product-price">{{ $item->model->presentPrice() }}</td>
                                                     <td class="product-quantity">
-                                                        <div class="cart-plus-minus f-left">
-                                                            <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
-                                                        </div>
+                                                        <select class="quantity" data-id="{{ $item->rowId }}">
+                                                            @for ($i = 1; $i < 5 + 1; $i++)
+                                                                <option {{ $item->qty == $i ? 'selected' : '' }}>{{ $i }}</option>
+                                                            @endfor
+                                                            {{-- <option {{ $item->qty == 1 ? 'selected' : '' }}>1</option>
+                                                            <option {{ $item->qty == 2 ? 'selected' : '' }}>2</option>
+                                                            <option {{ $item->qty == 3 ? 'selected' : '' }}>3</option>
+                                                            <option {{ $item->qty == 4 ? 'selected' : '' }}>4</option> --}}
+                                                        </select>
                                                     </td>
-                                                    <td class="product-subtotal">$1020.00</td>
+                                                    <td class="product-subtotal">{{ presentPrice($item->subtotal) }}</td>
                                                     <td class="product-remove">
                                                         <form action="{{ route('cart.destroy', $item->rowId) }}" method="POST">
                                                             {{ csrf_field() }}
@@ -139,7 +145,7 @@
                                                 <table>
                                                     <tr>
                                                         <td class="td-title-1">Cart Subtotal</td>
-                                                        <td class="td-title-2"></td>
+                                                        <td class="td-title-2">{{ presentPrice(Cart::subtotal()) }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="td-title-1">Shipping and Handing</td>
@@ -151,7 +157,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td class="order-total">Order Total</td>
-                                                        <td class="order-total-price">$170.00</td>
+                                                        <td class="order-total-price">{{ presentPrice(Cart::total()) }}</td>
                                                     </tr>
                                                 </table>
                                             </div>
@@ -634,5 +640,33 @@
 </section>
 
                         
+
+@stop
+
+@section('extra-js')
+
+    <script src="{{ asset('js/app.js') }}"></script>
+
+    <script>
+        (function(){
+            const classname = document.querySelectorAll('.quantity')
+            Array.from(classname).forEach(function(element) {
+                element.addEventListener('change', function() {
+                    const id = element.getAttribute('data-id')
+                    axios.patch(`/cart/${id}`, {
+                        quantity: this.value,
+                    })
+                    .then(function (response) {
+                        // console.log(response);
+                        window.location.href = "{{ route('cart.index') }}";
+                    })
+                    .catch(function (error) {
+                        // console.log(error);
+                        window.location.href = "{{ route('cart.index') }}";
+                    });
+                })
+            })
+        })();
+    </script>
 
 @stop
