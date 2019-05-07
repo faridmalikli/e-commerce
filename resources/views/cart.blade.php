@@ -88,7 +88,7 @@
                                                 <tr>
                                                     <td class="product-thumbnail">
                                                         <div class="pro-thumbnail-img">
-                                                            <a href="{{ route('shop.show', $item->model->slug) }}"><img src="{{ asset('img/product/'. $item->model->slug .'.jpg') }}" alt=""></a>
+                                                            <a href="{{ route('shop.show', $item->model->slug) }}"><img src="{{ asset('img/products/'. $item->model->slug .'.jpg') }}" alt=""></a>
                                                         </div>
                                                         <div class="pro-thumbnail-info text-left">
                                                             <h6 class="product-title-2">
@@ -209,7 +209,7 @@
                                                 <tr>
                                                     <td class="product-thumbnail">
                                                         <div class="pro-thumbnail-img">
-                                                            <a href="{{ route('shop.show', $item->model->slug) }}"><img src="{{ asset('img/product/'. $item->model->slug .'.jpg') }}" alt=""></a>
+                                                            <a href="{{ route('shop.show', $item->model->slug) }}"><img src="{{ asset('img/products/'. $item->model->slug .'.jpg') }}" alt=""></a>
                                                         </div>
                                                         <div class="pro-thumbnail-info text-left">
                                                             <h6 class="product-title-2">
@@ -594,7 +594,7 @@
                                         <div class="product-item">
                                             <div class="product-img">
                                                 <a href="{{ route('shop.show', $product->slug) }}">
-                                                <img src="{{ asset('img/product/'. $product->slug .'.jpg') }}" alt=""/>
+                                                <img src="{{ asset('img/products/'. $product->slug .'.jpg') }}" alt=""/>
                                                 </a>
                                             </div>
                                             <div class="product-info">

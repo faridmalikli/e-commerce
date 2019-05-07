@@ -25,7 +25,7 @@
                             <!-- imgs-zoom-area start -->
                             <div class="col-md-5 col-sm-5 col-xs-12">
                                 <div class="imgs-zoom-area">
-                                    <img id="zoom_03" src="{{ asset('img/product/'. $product->slug .'.jpg') }}" data-zoom-image="{{ asset('img/product/'. $product->slug .'.jpg') }}" alt="">
+                                    <img id="zoom_03" src="{{ asset('img/products/'. $product->slug .'.jpg') }}" data-zoom-image="{{ asset('img/products/'. $product->slug .'.jpg') }}" alt="">
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <div id="gallery_01" class="carousel-btn slick-arrow-3 mt-30">
@@ -235,7 +235,7 @@
                                     <div class="product-item">
                                         <div class="product-img">
                                             <a href="{{ route('shop.show', $product->slug) }}">
-                                            <img src="{{ asset('img/product/'. $product->slug .'.jpg') }}" alt=""/>
+                                            <img src="{{ asset('img/products/'. $product->slug .'.jpg') }}" alt=""/>
                                             </a>
                                         </div>
                                         <div class="product-info">

@@ -13,69 +13,54 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
-        Product::create([
-            'name' => 'Xiaomi Note 5',
-            'slug' => 'xiaomi-note-5',
-            'details' => '5 inch, 16 GB, 4GB RAM',
-            'price' => 15611,
-            'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys 
-                            standard dummy text ever since the 1500'
-        ]);
+        for ($i = 1; $i < 11; $i++){
+            Product::create([
+                'name' => 'Xiaomi ' . $i,
+                'slug' => 'xiaomi-' . $i,
+                'details' => [4, 5, 6][array_rand([4, 5, 6])] . ' inch, ' . [16, 32, 64][array_rand([16, 32, 64])] . ' GB, 1080 GHz',
+                'price' => rand(100, 2000),
+                'description' => 'Lorem Ipsum ' . $i . ' is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys 
+                                    standard dummy text ever since the 1500'
+            ])->categories()->attach(1);
+        }  
+        
+        $product = Product::find(1);
+        $product->categories()->attach(3);
+
+        for ($i = 1; $i < 11; $i++){
+            Product::create([
+                'name' => 'Lenovo ' . $i,
+                'slug' => 'lenovo-' . $i,
+                'details' => [4, 5, 6][array_rand([4, 5, 6])] . ' inch, ' . [16, 32, 64][array_rand([16, 32, 64])] . ' GB, 1080 GHz',
+                'price' => rand(100, 2000),
+                'description' => 'Lorem Ipsum ' . $i . ' is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys 
+                                    standard dummy text ever since the 1500'
+            ])->categories()->attach(2);
+        }  
 
 
-        Product::create([
-            'name' => 'Samsung Note 8',
-            'slug' => 'samsung-note-8',
-            'details' => '6 inch, 64 GB, 4GB RAM',
-            'price' => 78588,
-            'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys 
-                            standard dummy text ever since the 1500'
-        ]);
+        for ($i = 1; $i < 11; $i++){
+            Product::create([
+                'name' => 'Samsung ' . $i,
+                'slug' => 'samsung-' . $i,
+                'details' => [4, 5, 6][array_rand([4, 5, 6])] . ' inch, ' . [16, 32, 64][array_rand([16, 32, 64])] . ' GB, 1080 GHz',
+                'price' => rand(100, 2000),
+                'description' => 'Lorem Ipsum ' . $i . ' is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys 
+                                    standard dummy text ever since the 1500'
+            ])->categories()->attach(3);
+        }  
 
 
-
-        Product::create([
-            'name' => 'Iphone 5 S',
-            'slug' => 'ihopne-5-s',
-            'details' => '5 inch, 32 GB, 3GB RAM',
-            'price' => 15611,
-            'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys 
-                            standard dummy text ever since the 1500'
-        ]);
-
-
-
-        Product::create([
-            'name' => 'huawei 6',
-            'slug' => 'huavei-6',
-            'details' => '4 inch, 16 GB, 2GB RAM',
-            'price' => 58628,
-            'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys 
-                            standard dummy text ever since the 1500'
-        ]);
-
-
-
-
-        Product::create([
-            'name' => 'Lenovo K 5 Play',
-            'slug' => 'lenovo-k-5-play',
-            'details' => '4.5 inch, 16 GB, 2GB RAM',
-            'price' => 8595,
-            'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys 
-                            standard dummy text ever since the 1500'
-        ]);
-
-
-
-        Product::create([
-            'name' => 'Meiuzu 5',
-            'slug' => 'meiuzu-5',
-            'details' => '4 inch, 16 GB, 1GB RAM',
-            'price' => 15611,
-            'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys 
-                            standard dummy text ever since the 1500'
-        ]);
-
+        for ($i = 1; $i < 11; $i++){
+            Product::create([
+                'name' => 'Iphone ' . $i,
+                'slug' => 'iphone-' . $i,
+                'details' => [4, 5, 6][array_rand([4, 5, 6])] . ' inch, ' . [16, 32, 64][array_rand([16, 32, 64])] . ' GB, 1080 GHz',
+                'price' => rand(100, 2000),
+                'description' => 'Lorem Ipsum ' . $i . ' is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys 
+                                    standard dummy text ever since the 1500'
+            ])->categories()->attach(4);
+        }
+        
     }
 }
