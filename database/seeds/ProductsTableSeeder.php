@@ -18,11 +18,12 @@ class ProductsTableSeeder extends Seeder
                 'name' => 'Xiaomi ' . $i,
                 'slug' => 'xiaomi-' . $i,
                 'details' => [4, 5, 6][array_rand([4, 5, 6])] . ' inch, ' . [16, 32, 64][array_rand([16, 32, 64])] . ' GB, 1080 GHz',
-                'price' => rand(100, 2000),
+                'price' => rand(20000, 30000),
                 'description' => 'Lorem Ipsum ' . $i . ' is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys 
                                     standard dummy text ever since the 1500'
             ])->categories()->attach(1);
         }  
+
         
         $product = Product::find(1);
         $product->categories()->attach(3);
@@ -32,7 +33,7 @@ class ProductsTableSeeder extends Seeder
                 'name' => 'Lenovo ' . $i,
                 'slug' => 'lenovo-' . $i,
                 'details' => [4, 5, 6][array_rand([4, 5, 6])] . ' inch, ' . [16, 32, 64][array_rand([16, 32, 64])] . ' GB, 1080 GHz',
-                'price' => rand(100, 2000),
+                'price' => rand(20000, 30000),
                 'description' => 'Lorem Ipsum ' . $i . ' is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys 
                                     standard dummy text ever since the 1500'
             ])->categories()->attach(2);
@@ -44,7 +45,7 @@ class ProductsTableSeeder extends Seeder
                 'name' => 'Samsung ' . $i,
                 'slug' => 'samsung-' . $i,
                 'details' => [4, 5, 6][array_rand([4, 5, 6])] . ' inch, ' . [16, 32, 64][array_rand([16, 32, 64])] . ' GB, 1080 GHz',
-                'price' => rand(100, 2000),
+                'price' => rand(20000, 30000),
                 'description' => 'Lorem Ipsum ' . $i . ' is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys 
                                     standard dummy text ever since the 1500'
             ])->categories()->attach(3);
@@ -56,7 +57,7 @@ class ProductsTableSeeder extends Seeder
                 'name' => 'Iphone ' . $i,
                 'slug' => 'iphone-' . $i,
                 'details' => [4, 5, 6][array_rand([4, 5, 6])] . ' inch, ' . [16, 32, 64][array_rand([16, 32, 64])] . ' GB, 1080 GHz',
-                'price' => rand(100, 2000),
+                'price' => rand(200, 300),
                 'description' => 'Lorem Ipsum ' . $i . ' is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys 
                                     standard dummy text ever since the 1500'
             ])->categories()->attach(4);

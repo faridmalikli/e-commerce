@@ -19,7 +19,13 @@ class CartController extends Controller
     {
         $relatedProduct = Product::mightAlsoLike()->get();
 
-        return view('cart', compact('relatedProduct'));
+        return view('cart')->with([
+            'relatedProduct' => $relatedProduct,
+            'discount'       => getNumbers()->get('discount'),
+            'newSubtotal'    => getNumbers()->get('newSubtotal'),
+            'newTax'         => getNumbers()->get('newTax'),
+            'newTotal'       => getNumbers()->get('newTotal')
+        ]);
     }
 
     /**

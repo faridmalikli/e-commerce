@@ -132,14 +132,6 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="coupon-discount box-shadow p-30 mb-50">
-                                                <h6 class="widget-title border-left mb-20">coupon discount</h6>
-                                                <p>Enter your coupon code if you have one!</p>
-                                                <input type="text" name="name" placeholder="Enter your code here.">
-                                                <button class="submit-btn-1 black-bg btn-hover-2" type="submit">apply coupon</button>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="payment-details box-shadow p-30 mb-50">
                                                 <h6 class="widget-title border-left mb-20">payment details</h6>
                                                 <table>
@@ -147,20 +139,50 @@
                                                         <td class="td-title-1">Cart Subtotal</td>
                                                         <td class="td-title-2">{{ presentPrice(Cart::subtotal()) }}</td>
                                                     </tr>
+                                                    @if(session()->has('coupon'))
                                                     <tr>
-                                                        <td class="td-title-1">Shipping and Handing</td>
-                                                        <td class="td-title-2">$15.00</td>
+                                                        <td class="td-title-1">Discount ({{ session()->get('coupon')['name'] }}) :
+                                                            <form action="{{ route('coupon.destroy') }}" method="POST" style="display:inline-block">
+                                                                {{ csrf_field() }}
+                                                                {{ method_field('delete') }}
+                                                                <button type="submit" style="font-size:11px; color:red; font-weight:bold;">Remove</button>
+                                                            </form>
+                                                        </td>
+                                                        <td class="td-title-2"> - {{ presentPrice($discount) }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="td-title-1">Vat</td>
-                                                        <td class="td-title-2">$00.00</td>
+                                                        <td class="td-title-1">New Cart Subtotal</td>
+                                                        <td class="td-title-2">{{ presentPrice($newSubtotal) }}</td>
+                                                    </tr>
+                                                    @endif
+                                                    <tr>
+                                                        <td class="td-title-1">Shipping and Handing</td>
+                                                        <td class="td-title-2">$0</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="td-title-1">Vat ({{ config('cart.tax')}}% )</td>
+                                                        <td class="td-title-2">{{ presentPrice($newTax) }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="order-total">Order Total</td>
-                                                        <td class="order-total-price">{{ presentPrice(Cart::total()) }}</td>
+                                                        <td class="order-total-price">{{ presentPrice($newTotal) }}</td>
                                                     </tr>
                                                 </table>
                                             </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <!-- apply coupon -->
+                                            @if(!session()->has('coupon'))
+                                            <div class="coupon-discount box-shadow p-30 mb-50">
+                                                <h6 class="widget-title border-left mb-20">coupon discount</h6>
+                                                <p>Enter your coupon code if you have one!</p>
+                                                <form action="{{ route('coupon.store') }}" method="POST">
+                                                    {{ csrf_field() }}
+                                                    <input type="text" name="coupon_code" id="coupon_code" placeholder="Enter your code here.">
+                                                    <button class="submit-btn-1 black-bg btn-hover-2" type="submit">apply coupon</button>
+                                                </form>
+                                            </div>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="row">
@@ -187,7 +209,7 @@
                                     </div>
                                     @else
                                         <h2>No items in Cart!</h2>
-                                        <a class="button">Continue Shopping</a>
+                                        <a class="button mb-50 mt-50" style="padding:10px; font-weight:bold;">Continue Shopping</a>
                                     @endif
                                 </form>
                                 @if(Cart::instance('saveForLater')->count() > 0)

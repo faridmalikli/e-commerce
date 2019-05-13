@@ -18,7 +18,12 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-        return view('checkout');
+        return view('checkout')->with([
+            'discount'    => getNumbers()->get('discount'),
+            'newSubtotal' => getNumbers()->get('newSubtotal'),
+            'newTax'      => getNumbers()->get('newTax'),
+            'newTotal'    => getNumbers()->get('newTotal')
+        ]);
     }
 
     /**
@@ -45,7 +50,7 @@ class CheckoutController extends Controller
 
         try {
             $charge = Stripe::charges()->create([
-                'amount' => Cart::total(),
+                'amount' => getNumbers()->get('newTotal'),
                 'currency' => 'AZN',
                 'source' => $request->stripeToken,
                 'description' => 'Order',
@@ -54,8 +59,13 @@ class CheckoutController extends Controller
                     //change to Order ID after we start using DB
                     'contents' => $contents,
                     'quantity' => Cart::instance('default')->count(),
+                    'discount' => collect(session()->get('coupon'))->toJson()
                 ],
             ]);
+
+            //SUCCESSFUL
+            Cart::instance('default')->destroy();
+            session()->forget('coupon');
 
             return redirect()->route('confirmation.index')->with('success_message', 'Thank you! Your payment has been successfully accepted!');
 
@@ -108,4 +118,5 @@ class CheckoutController extends Controller
     {
         //
     }
+
 }

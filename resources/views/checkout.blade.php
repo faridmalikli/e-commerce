@@ -195,28 +195,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="culculate-shipping box-shadow p-30">
-                                                <h6 class="widget-title border-left mb-20">culculate shipping</h6>
-                                                <p>Enter your coupon code if you have one!</p>
-                                                <div class="row">
-                                                    <div class="col-sm-4 col-xs-12">
-                                                        <input type="text"  placeholder="Country">
-                                                    </div>
-                                                    <div class="col-sm-4 col-xs-12">
-                                                        <input type="text"  placeholder="Region / State">
-                                                    </div>
-                                                    <div class="col-sm-4 col-xs-12">
-                                                        <input type="text"  placeholder="Post code">
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <button class="submit-btn-1 black-bg btn-hover-2">get a quote</button>   
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -325,11 +303,11 @@
                         <!-- checkout start -->
                         <div class="tab-pane active" id="checkout">
                             <div class="checkout-content box-shadow p-30">
-                                <form action="{{ route('checkout.store') }}" method="POST" id="payment-form" novalidate>
-                                    {{ csrf_field() }}
-                                    <div class="row">
-                                        <!-- billing details -->
-                                        <div class="col-md-6">
+                                <div class="row">
+                                    <!-- billing details -->
+                                    <div class="col-md-6">
+                                        <form action="{{ route('checkout.store') }}" method="POST" id="payment-form" novalidate>
+                                            {{ csrf_field() }}
                                             <div class="form-group">
                                                 <label for="email">Email Address</label>
                                                 @if (auth()->user())
@@ -387,93 +365,103 @@
 
                                             <button type="submit" id="complete-order" class="submit-btn-1 mt-30 btn-hover-1">Complete Order</button>
                                             <!-- payment details end -->
+                                        </form>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <!-- our order -->
+                                        @foreach(Cart::content() as $item)
+                                        <div class="payment-details pl-10 mb-50">
+                                            <h6 class="widget-title border-left mb-20">our order</h6>
+                                            <table>
+                                                <tr>
+                                                    <td class="td-title-1">{{ $item->model->name }}</td>
+                                                    <td class="td-title-2">{{ $item->model->presentPrice() }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="td-title-1">{{ $item->model->name }} x {{ $item->qty }}</td>
+                                                    <td class="td-title-2">{{ $item->model->presentPrice() }} * {{ $item->qty }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="td-title-1">Cart Subtotal</td>
+                                                    <td class="td-title-2">{{ presentPrice(Cart::subtotal()) }}</td>
+                                                </tr>
+                                                @if(session()->has('coupon'))
+                                                <tr>
+                                                    <td class="td-title-1">Discount ({{ session()->get('coupon')['name'] }})</td>
+                                                    <td class="td-title-2"> - {{ presentPrice($discount) }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="td-title-1">New Cart Subtotal</td>
+                                                    <td class="td-title-2">{{ presentPrice($newSubtotal) }}</td>
+                                                </tr>
+                                                @endif
+                                                <tr>
+                                                    <td class="td-title-1">Shipping and Handing</td>
+                                                    <td class="td-title-2">$0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="td-title-1">Vat ({{ config('cart.tax')}}% )</td>
+                                                    <td class="td-title-2">{{ presentPrice($newTax) }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="order-total">Order Total</td>
+                                                    <td class="order-total-price">{{ presentPrice($newTotal) }}</td>
+                                                </tr>
+                                            </table>
                                         </div>
-                                        <div class="col-md-6">
-                                            <!-- our order -->
-                                            <div class="payment-details pl-10 mb-50">
-                                                <h6 class="widget-title border-left mb-20">our order</h6>
-                                                @foreach(Cart::content() as $item)
-                                                <table>
-                                                    <tr>
-                                                        <td class="td-title-1">{{ $item->model->name }}</td>
-                                                        <td class="td-title-2">{{ $item->model->presentPrice() }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="td-title-1">{{ $item->model->name }} x {{ $item->qty }}</td>
-                                                        <td class="td-title-2">{{ $item->model->presentPrice() }} * {{ $item->qty }}</td>
-                                                    </tr>
-                                                @endforeach
-                                                    <tr>
-                                                        <td class="td-title-1">Cart Subtotal</td>
-                                                        <td class="td-title-2">{{ presentPrice(Cart::subtotal()) }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="td-title-1">Shipping and Handing</td>
-                                                        <td class="td-title-2">$15.00</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="td-title-1">Vat</td>
-                                                        <td class="td-title-2">$00.00</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="order-total">Order Total</td>
-                                                        <td class="order-total-price">{{ presentPrice(Cart::total()) }}</td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                            <!-- payment-method -->
-                                            <div class="payment-method">
-                                                <h6 class="widget-title border-left mb-20">payment method</h6>
-                                                <div id="accordion">
-                                                    <div class="panel">
-                                                        <h4 class="payment-title box-shadow">
-                                                            <a data-toggle="collapse" data-parent="#accordion" href="#bank-transfer" >
-                                                            direct bank transfer
-                                                            </a>
-                                                        </h4>
-                                                        <div id="bank-transfer" class="panel-collapse collapse in" >
-                                                            <div class="payment-content">
-                                                                <p>Lorem Ipsum is simply in dummy text of the printing and type setting industry. Lorem Ipsum has been.</p>
-                                                            </div>
+                                        @endforeach
+                                        <!-- payment-method -->
+                                        <div class="payment-method">
+                                            <h6 class="widget-title border-left mb-20">payment method</h6>
+                                            <div id="accordion">
+                                                <div class="panel">
+                                                    <h4 class="payment-title box-shadow">
+                                                        <a data-toggle="collapse" data-parent="#accordion" href="#bank-transfer" >
+                                                        direct bank transfer
+                                                        </a>
+                                                    </h4>
+                                                    <div id="bank-transfer" class="panel-collapse collapse in" >
+                                                        <div class="payment-content">
+                                                            <p>Lorem Ipsum is simply in dummy text of the printing and type setting industry. Lorem Ipsum has been.</p>
                                                         </div>
                                                     </div>
-                                                    <div class="panel">
-                                                        <h4 class="payment-title box-shadow">
-                                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                                            cheque payment
-                                                            </a>
-                                                        </h4>
-                                                        <div id="collapseTwo" class="panel-collapse collapse">
-                                                            <div class="payment-content">
-                                                                <p>Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
-                                                            </div>
+                                                </div>
+                                                <div class="panel">
+                                                    <h4 class="payment-title box-shadow">
+                                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                                        cheque payment
+                                                        </a>
+                                                    </h4>
+                                                    <div id="collapseTwo" class="panel-collapse collapse">
+                                                        <div class="payment-content">
+                                                            <p>Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
                                                         </div>
                                                     </div>
-                                                    <div class="panel">
-                                                        <h4 class="payment-title box-shadow">
-                                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" >
-                                                            paypal
-                                                            </a>
-                                                        </h4>
-                                                        <div id="collapseThree" class="panel-collapse collapse" >
-                                                            <div class="payment-content">
-                                                                <p>Pay via PayPal; you can pay with your credit card if you don't have a PayPal account.</p>
-                                                                <ul class="payent-type mt-10">
-                                                                    <li><a href="#"><img src="img/payment/1.png" alt=""></a></li>
-                                                                    <li><a href="#"><img src="img/payment/2.png" alt=""></a></li>
-                                                                    <li><a href="#"><img src="img/payment/3.png" alt=""></a></li>
-                                                                    <li><a href="#"><img src="img/payment/4.png" alt=""></a></li>
-                                                                </ul>
-                                                            </div>
+                                               </div>
+                                                <div class="panel">
+                                                    <h4 class="payment-title box-shadow">
+                                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" >
+                                                        paypal
+                                                        </a>
+                                                    </h4>
+                                                    <div id="collapseThree" class="panel-collapse collapse" >
+                                                        <div class="payment-content">
+                                                            <p>Pay via PayPal; you can pay with your credit card if you don't have a PayPal account.</p>
+                                                            <ul class="payent-type mt-10">
+                                                                <li><a href="#"><img src="img/payment/1.png" alt=""></a></li>
+                                                                <li><a href="#"><img src="img/payment/2.png" alt=""></a></li>
+                                                                <li><a href="#"><img src="img/payment/3.png" alt=""></a></li>
+                                                                <li><a href="#"><img src="img/payment/4.png" alt=""></a></li>
+                                                            </ul>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- payment-method end -->
-                                            {{-- <button class="submit-btn-1 mt-30 btn-hover-1" type="submit">place order</button> --}}
                                         </div>
+                                        <!-- payment-method end -->
+                                        {{-- <button class="submit-btn-1 mt-30 btn-hover-1" type="submit">place order</button> --}}
                                     </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
                         <!-- checkout end -->
