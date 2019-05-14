@@ -235,7 +235,8 @@
                                     <div class="product-item">
                                         <div class="product-img">
                                             <a href="{{ route('shop.show', $product->slug) }}">
-                                            <img src="{{ asset('img/products/'. $product->slug .'.jpg') }}" alt=""/>
+                                                <img src="{{ asset('storage/'. $product->image) }}" alt=""/>
+                                                {{-- <img src="{{ asset('img/products/'. $product->slug .'.jpg') }}" alt=""/> --}}
                                             </a>
                                         </div>
                                         <div class="product-info">

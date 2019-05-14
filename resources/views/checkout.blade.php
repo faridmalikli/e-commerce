@@ -369,10 +369,10 @@
                                     </div>
                                     <div class="col-md-6">
                                         <!-- our order -->
-                                        @foreach(Cart::content() as $item)
                                         <div class="payment-details pl-10 mb-50">
                                             <h6 class="widget-title border-left mb-20">our order</h6>
                                             <table>
+                                                @foreach(Cart::content() as $item)
                                                 <tr>
                                                     <td class="td-title-1">{{ $item->model->name }}</td>
                                                     <td class="td-title-2">{{ $item->model->presentPrice() }}</td>
@@ -381,6 +381,7 @@
                                                     <td class="td-title-1">{{ $item->model->name }} x {{ $item->qty }}</td>
                                                     <td class="td-title-2">{{ $item->model->presentPrice() }} * {{ $item->qty }}</td>
                                                 </tr>
+                                                @endforeach
                                                 <tr>
                                                     <td class="td-title-1">Cart Subtotal</td>
                                                     <td class="td-title-2">{{ presentPrice(Cart::subtotal()) }}</td>
@@ -408,8 +409,7 @@
                                                     <td class="order-total-price">{{ presentPrice($newTotal) }}</td>
                                                 </tr>
                                             </table>
-                                        </div>
-                                        @endforeach
+                                        </div>        
                                         <!-- payment-method -->
                                         <div class="payment-method">
                                             <h6 class="widget-title border-left mb-20">payment method</h6>
