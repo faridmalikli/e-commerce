@@ -19,6 +19,32 @@ Note: This is the file where you can add your custom styles to change the look o
     Active Category Style
 ------------------------------------- */
 
-.product-cat ul li.active {
+.product-cat ul li.active, .new-customers label, .registered-customers label {
     font-weight: bold;
 }
+
+.btn-full {
+    width: 100%;
+    display:block;
+}
+
+
+#loginButton {
+    width: 45%;
+    float: left;
+}
+
+
+#registerButton {
+    width: 45%;
+    float: right;
+}
+
+
+.loggedIn {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+

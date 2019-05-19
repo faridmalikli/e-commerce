@@ -62,22 +62,47 @@
                         <div class="col-sm-6 col-xs-12">
                             <div class="top-link clearfix">
                                 <ul class="link f-right">
-                                    <li>
+                                    {{-- <li>
                                         <a href="my-account-2.html">
                                             <i class="zmdi zmdi-account"></i>
                                             My Account
                                         </a>
-                                    </li>
+                                    </li> --}}
+                                    @guest
+                                        <li>
+                                            <a href="{{ route('register') }}">
+                                                <i class="zmdi zmdi-account-add"></i>
+                                                Sign Up
+                                            </a>
+                                        </li>
+                                        <li onclick="myFunction()" id="loginForum">
+                                            <a href="{{ route('login') }}">
+                                                <i class="zmdi zmdi-lock"></i>
+                                                Login
+                                            </a>
+                                        </li>
+                                    @else
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                                <i class="zmdi zmdi-minus-circle"></i>
+                                                {{ __('Logout') }}
+                                            </a>
+
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                @csrf
+                                            </form>
+                                        </li>
+                                    @endguest
                                     <li>
-                                        <a href="wishlist.html">
-                                            <i class="zmdi zmdi-favorite"></i>
-                                            Wish List (0)
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="login.html">
-                                            <i class="zmdi zmdi-lock"></i>
-                                            Login
+                                        <a href="{{ route('cart.index') }}">
+                                            <i class="zmdi zmdi-shopping-cart"></i>
+                                            Cart 
+                                            @if(Cart::instance('default')->count() > 0)
+                                                ({{ Cart::instance('default')->count() }})
+                                            @endif
+                                            
                                         </a>
                                     </li>
                                 </ul>
@@ -1042,6 +1067,8 @@
     @yield('extra-js');
 
 </body>
+
+
     
 
 

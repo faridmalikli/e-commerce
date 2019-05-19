@@ -209,7 +209,7 @@
                                     </div>
                                     @else
                                         <h2>No items in Cart!</h2>
-                                        <a class="button mb-50 mt-50" style="padding:10px; font-weight:bold;">Continue Shopping</a>
+                                        <a class="button mb-50 mt-50" href="{{ route('shop.index') }}" style="padding:10px; font-weight:bold;">Continue Shopping</a>
                                     @endif
                                 </form>
                                 @if(Cart::instance('saveForLater')->count() > 0)
