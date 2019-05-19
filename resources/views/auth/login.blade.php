@@ -55,7 +55,7 @@
                                         </div>
                                     </div>
                                         <button id="loginButton" class="btn-full submit-btn-1 mt-20 btn-hover-1" type="submit">Login</button>
-                                        <a href="{{ route('register') }}" id="registerButton" class="btn btn-full submit-btn-1 mt-20 btn-hover-1 f-right">Register<a>
+                                        <a href="{{ route('guestCheckout.index') }}" id="registerButton" class="btn btn-full submit-btn-1 mt-20 btn-hover-1 f-right">Checkout as a Guest<a>
                                 </div>
                             </div>
                         </form>

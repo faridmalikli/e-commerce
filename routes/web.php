@@ -39,6 +39,8 @@ Route::get('/checkout', 'CheckoutController@index')->name('checkout.index')->mid
 
 Route::post('/checkout', 'CheckoutController@store')->name('checkout.store');
 
+Route::get('/guestCheckout', 'CheckoutController@index')->name('guestCheckout.index');
+
 Route::get('/thankyou', 'ConfirmationController@index')->name('confirmation.index');
 
 

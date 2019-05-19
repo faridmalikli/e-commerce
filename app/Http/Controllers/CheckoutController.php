@@ -18,6 +18,11 @@ class CheckoutController extends Controller
      */
     public function index()
     {
+        if (auth()->user() && request()->is('guestCheckout'))
+        {
+            return redirect()->route('checkout.index');
+        }
+
         return view('checkout')->with([
             'discount'    => getNumbers()->get('discount'),
             'newSubtotal' => getNumbers()->get('newSubtotal'),
