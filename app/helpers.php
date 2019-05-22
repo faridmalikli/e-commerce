@@ -17,6 +17,7 @@ function getNumbers()
     {
         $tax = config('cart.tax') / 100;
         $discount = session()->get('coupon')['discount'] ?? 0;
+        $code = session()->get('coupon')['name'];
         $newSubtotal = (Cart::subtotal() - $discount);
         if ($newSubtotal < 0) {
             $newSubtotal = 0;
@@ -27,6 +28,7 @@ function getNumbers()
         return collect([
             'tax'         => $tax,
             'discount'    => $discount,
+            'code'        => $code,
             'newSubtotal' => $newSubtotal,
             'newTax'      => $newTax,
             'newTotal'    => $newTotal   

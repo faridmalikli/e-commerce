@@ -21,4 +21,5 @@ class Product extends Model
     {
         return $query->inRandomOrder()->take(3);
     }
+
 }

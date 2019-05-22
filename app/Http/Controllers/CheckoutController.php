@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
+use App\OrderProduct;
 use Illuminate\Http\Request;
 use App\Http\Requests\CheckoutRequest;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -18,7 +20,7 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-        if (Cart::instance('default')->count == 0) 
+        if (Cart::instance('default')->count() == 0) 
         {
             return redirect()->route('shop.index');
         }
@@ -30,6 +32,7 @@ class CheckoutController extends Controller
 
         return view('checkout')->with([
             'discount'    => getNumbers()->get('discount'),
+            'code'        => getNumbers()->get('code'),
             'newSubtotal' => getNumbers()->get('newSubtotal'),
             'newTax'      => getNumbers()->get('newTax'),
             'newTotal'    => getNumbers()->get('newTotal')
@@ -73,14 +76,51 @@ class CheckoutController extends Controller
                 ],
             ]);
 
-            //SUCCESSFUL
+            
+            $this->addToOrdersTables($request, null);
+
+
+            // SUCCESSFUL
             Cart::instance('default')->destroy();
             session()->forget('coupon');
 
             return redirect()->route('confirmation.index')->with('success_message', 'Thank you! Your payment has been successfully accepted!');
 
         } catch (CardErrorException $e) {
+            $this->addToOrdersTables($request, $e->getMessage());
             return back()->withErrors('Error! ' . $e->getMessage());
+        }
+    }
+
+    protected function addToOrdersTables ($request, $error)
+    {
+        // Insert into order table
+        $order = Order::create([
+            'user_id'               => auth()->user() ? auth()->user()->id : null,
+            'billing_email'         => $request->email,
+            'billing_name'          => $request->name,
+            'billing_address'       => $request->address,
+            'billing_city'          => $request->city,
+            'billing_province'      => $request->province,
+            'billing_postalcode'    => $request->postalcode,
+            'billing_phone'         => $request->phone,
+            'billing_name_on_card'  => $request->name_on_card,
+            'billing_discount'      => getNumbers()->get('discount'),
+            'billing_discount_code' => getNumbers()->get('code'),
+            'billing_subtotal'      => getNumbers()->get('newSubtotal'),
+            'billing_tax'           => getNumbers()->get('newTax'),
+            'billing_total'         => getNumbers()->get('newTotal'),
+            'error'                 => $error,
+        ]);
+
+
+        // Insert into order_product table
+        foreach (Cart::content() as $item) {
+            OrderProduct::create([
+                'order_id'    => $order->id,
+                'product_id' => $item->model->id,
+                'quantity'   => $item->qty,
+            ]);
         }
     }
 
@@ -130,3 +170,5 @@ class CheckoutController extends Controller
     }
 
 }
+
+
