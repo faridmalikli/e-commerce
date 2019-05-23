@@ -43,7 +43,10 @@ Route::get('/guestCheckout', 'CheckoutController@index')->name('guestCheckout.in
 
 Route::get('/thankyou', 'ConfirmationController@index')->name('confirmation.index');
 
-
+Route::get('/mailable', function () {
+    $order = App\Order::find(1);
+    return new App\Mail\OrderPlaced($order);
+});
 
 
 
