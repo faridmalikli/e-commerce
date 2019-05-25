@@ -5,10 +5,10 @@
 @section('content')
 
 @section('breadcrumb')
-    <h1 class="breadcrumbs-title">Single Product</h1>
+    <h1 class="breadcrumbs-title">Search</h1>
     <ul class="breadcrumb-list">
         <li><a href="/">Home</a></li>
-        <li>Single Product</li>
+        <li>Search</li>
     </ul>
 @stop
 

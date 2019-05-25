@@ -70,6 +70,7 @@
                                 <div class="single-product-info">
                                     <h3 class="text-black-1">{{ $product->name }}</h3>
                                     <h6 class="brand-name-2">brand name</h6>
+                                    {{ $inStock }}
                                     <!--  hr -->
                                     <hr>
                                     <!-- single-pro-color-rating -->

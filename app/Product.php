@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Nicolaslopezj\Searchable\SearchableTrait;
 
@@ -9,7 +10,6 @@ use Nicolaslopezj\Searchable\SearchableTrait;
 class Product extends Model
 {
     use SearchableTrait;
-
 
     /**
      * Searchable rules.
@@ -48,3 +48,4 @@ class Product extends Model
     }
 
 }
+
