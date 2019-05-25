@@ -54,13 +54,34 @@ class ShopController extends Controller
      * @param string slug
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show ($slug)
     {
         $product = Product::where('slug', $slug)->firstOrFail();
 
         $relatedProduct = Product::where('slug', '!=', $slug)->mightAlsoLike()->get();
 
         return view('product', compact('product', 'relatedProduct'));
+    }
+
+
+
+
+    public function search (Request $request)
+    {
+        $request->validate([
+            'query' => 'required|min:3'
+        ]);
+
+        $query = $request->input('query');
+
+        // $products = Product::where('name', 'LIKE', "%$query%")
+        //                     ->orWhere('details', 'LIKE', "%$query%")
+        //                     ->orWhere('description', 'LIKE', "%$query%")
+        //                     ->paginate(10);
+
+        $products = Product::search($query)->paginate(10);
+
+        return view('search-results', compact('products'));
     }
 
 }

@@ -139,9 +139,9 @@
                                            <button class="search-toggle">
                                             <i class="zmdi zmdi-search"></i>
                                            </button>
-                                            <form action="#">
+                                            <form action="{{ route('search') }}" method="GET" >
                                                 <div class="top-search-box">
-                                                    <input type="text" placeholder="Search here your product...">
+                                                    <input type="text" name="query" value="{{ request()->input('query') }}" placeholder="Search here your product...">
                                                     <button type="submit">
                                                         <i class="zmdi zmdi-search"></i>
                                                     </button>
@@ -409,6 +409,23 @@
             </div>
         </div>
         <!-- BREADCRUMBS SETCTION END -->
+        <div class="container">
+            @if(session()->has('success_message'))
+                <div class="alert alert-success">
+                    {{ session()->get('success_message') }}
+                </div>
+            @endif
+
+            @if(count($errors) > 0)
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        </div>
 
         @yield('content')
 
