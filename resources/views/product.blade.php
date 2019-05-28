@@ -70,7 +70,7 @@
                                 <div class="single-product-info">
                                     <h3 class="text-black-1">{{ $product->name }}</h3>
                                     <h6 class="brand-name-2">brand name</h6>
-                                    {{ $inStock }}
+                                    {!! $stockLevel !!}
                                     <!--  hr -->
                                     <hr>
                                     <!-- single-pro-color-rating -->
@@ -117,13 +117,15 @@
                                                     <a href="#" title="Compare" tabindex="0"><i class="zmdi zmdi-refresh"></i></a>
                                                 </li>
                                                 <li>
-                                                    <form action="{{ route('cart.store') }}" method="POST">
-                                                        {{ csrf_field() }}
-                                                        <input type="hidden" name="id" value="{{ $product->id }}">
-                                                        <input type="hidden" name="name" value="{{ $product->name }}">
-                                                        <input type="hidden" name="price" value="{{ $product->price }}">
-                                                        <button type="submit"><a href="#" title="Add to cart" tabindex="0"><i class="zmdi zmdi-shopping-cart-plus"></i></a></button>
-                                                    </form>
+                                                    @if ($product->quantity > 0)
+                                                        <form action="{{ route('cart.store') }}" method="POST">
+                                                            {{ csrf_field() }}
+                                                            <input type="hidden" name="id" value="{{ $product->id }}">
+                                                            <input type="hidden" name="name" value="{{ $product->name }}">
+                                                            <input type="hidden" name="price" value="{{ $product->price }}">
+                                                            <button type="submit"><a href="#" title="Add to cart" tabindex="0"><i class="zmdi zmdi-shopping-cart-plus"></i></a></button>
+                                                        </form>
+                                                    @endif
                                                 </li>
                                             </ul>
                                         </div>

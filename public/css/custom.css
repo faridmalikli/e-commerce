@@ -48,3 +48,15 @@ Note: This is the file where you can add your custom styles to change the look o
 }
 
 
+.badge-success {
+    background-color: #28A745;
+}
+
+.badge-warning {
+    background-color: #FFC107;
+}
+
+.badge-danger {
+    background-color: #DC3545;
+}
+

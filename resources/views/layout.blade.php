@@ -62,12 +62,6 @@
                         <div class="col-sm-6 col-xs-12">
                             <div class="top-link clearfix">
                                 <ul class="link f-right">
-                                    {{-- <li>
-                                        <a href="my-account-2.html">
-                                            <i class="zmdi zmdi-account"></i>
-                                            My Account
-                                        </a>
-                                    </li> --}}
                                     @guest
                                         <li>
                                             <a href="{{ route('register') }}">
@@ -83,6 +77,12 @@
                                         </li>
                                     @else
                                         <li>
+                                            <a href="{{ route('users.edit') }}">
+                                                <i class="zmdi zmdi-account"></i>
+                                                My Account
+                                            </a>
+                                        </li>
+                                        <li>
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
@@ -93,7 +93,7 @@
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                 @csrf
                                             </form>
-                                        </li>
+                                        </li>   
                                     @endguest
                                     <li>
                                         <a href="{{ route('cart.index') }}">

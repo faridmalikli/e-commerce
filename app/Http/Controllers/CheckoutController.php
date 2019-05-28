@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\Product;
 use App\OrderProduct;
 use App\Mail\OrderPlaced;
 use Illuminate\Http\Request;
@@ -42,16 +43,6 @@ class CheckoutController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -59,6 +50,12 @@ class CheckoutController extends Controller
      */
     public function store(CheckoutRequest $request)
     {
+        // Check race condition when there are less items available to purchase
+        if ($this->productsAreNoLongerAvailable()) {
+            return back()->withErrors('Sorry! One of the items in your cart is no longer available.');
+        }
+
+
         $contents = Cart::content()->map(function($item){
             return $item->model->slug. ', ' .$item->qty;
         })->values()->toJson();
@@ -80,7 +77,10 @@ class CheckoutController extends Controller
 
             
             $order = $this->addToOrdersTables($request, null);
-            Mail::send(new OrderPlaced($order));
+            //Mail::send(new OrderPlaced($order));
+
+            //decrease the quantity of all products in the cart
+            $this->decreaseQuantities();
 
 
             // SUCCESSFUL
@@ -129,49 +129,28 @@ class CheckoutController extends Controller
         return $order;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    
+    public function decreaseQuantities() 
     {
-        //
+        foreach (Cart::content() as $item) {
+            $product = Product::find($item->model->id);
+
+            $product->update(['quantity' => $product->quantity - $item->qty]);
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function productsAreNoLongerAvailable()
     {
-        //
-    }
+        foreach (Cart::content() as $item) {
+            $product = Product::find($item->model->id);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+            if ($product->quantity < $item->qty) {
+                return true;
+            }
+        }
+        
+        return false;
     }
 
 }

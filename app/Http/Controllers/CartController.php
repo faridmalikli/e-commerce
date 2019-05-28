@@ -62,27 +62,6 @@ class CartController extends Controller
         return redirect()->route('cart.index')->with('success_message', 'Item was added to your cart!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -97,10 +76,16 @@ class CartController extends Controller
             'quantity' => 'required|numeric|between:1,5'
         ]);
 
+        if ($request->quantity > $request->productQuantity) {
+            session()->flash('errors', collect(['We do not have enough items in stock.']));
+            return response()->json(['success' => false], 400);
+        }
+
         if ($validator->fails()) {
             session()->flash('errors', collect(['Quantity must be between 1 and 5!']));
             return response()->json(['success' => false], 400);
         }
+
 
         Cart::update($id, $request->quantity);
 

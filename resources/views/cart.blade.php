@@ -101,7 +101,7 @@
                                                     </td>
                                                     <td class="product-price">{{ $item->model->presentPrice() }}</td>
                                                     <td class="product-quantity">
-                                                        <select class="quantity" data-id="{{ $item->rowId }}">
+                                                        <select class="quantity" data-id="{{ $item->rowId }}" data-productQuantity="{{ $item->model->quantity }}">
                                                             @for ($i = 1; $i < 5 + 1; $i++)
                                                                 <option {{ $item->qty == $i ? 'selected' : '' }}>{{ $i }}</option>
                                                             @endfor
@@ -675,8 +675,10 @@
             Array.from(classname).forEach(function(element) {
                 element.addEventListener('change', function() {
                     const id = element.getAttribute('data-id')
+                    const productQuantity = element.getAttribute('data-productQuantity')
                     axios.patch(`/cart/${id}`, {
                         quantity: this.value,
+                        productQuantity: productQuantity
                     })
                     .then(function (response) {
                         // console.log(response);
