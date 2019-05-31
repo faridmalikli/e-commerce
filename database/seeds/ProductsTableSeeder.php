@@ -20,7 +20,8 @@ class ProductsTableSeeder extends Seeder
                 'details' => [4, 5, 6][array_rand([4, 5, 6])] . ' inch, ' . [16, 32, 64][array_rand([16, 32, 64])] . ' GB, 1080 GHz',
                 'price' => rand(20000, 30000),
                 'description' => 'Lorem Ipsum ' . $i . ' is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys 
-                                    standard dummy text ever since the 1500'
+                                    standard dummy text ever since the 1500',
+                'operating_system' => 'Android'
             ])->categories()->attach(1);
         }  
 
@@ -35,7 +36,8 @@ class ProductsTableSeeder extends Seeder
                 'details' => [4, 5, 6][array_rand([4, 5, 6])] . ' inch, ' . [16, 32, 64][array_rand([16, 32, 64])] . ' GB, 1080 GHz',
                 'price' => rand(20000, 30000),
                 'description' => 'Lorem Ipsum ' . $i . ' is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys 
-                                    standard dummy text ever since the 1500'
+                                    standard dummy text ever since the 1500',
+                'operating_system' => 'Windows Phone'
             ])->categories()->attach(2);
         }  
 
@@ -47,7 +49,8 @@ class ProductsTableSeeder extends Seeder
                 'details' => [4, 5, 6][array_rand([4, 5, 6])] . ' inch, ' . [16, 32, 64][array_rand([16, 32, 64])] . ' GB, 1080 GHz',
                 'price' => rand(20000, 30000),
                 'description' => 'Lorem Ipsum ' . $i . ' is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys 
-                                    standard dummy text ever since the 1500'
+                                    standard dummy text ever since the 1500',
+                'operating_system' => 'Bleckgerry ios'
             ])->categories()->attach(3);
         }  
 
@@ -59,7 +62,8 @@ class ProductsTableSeeder extends Seeder
                 'details' => [4, 5, 6][array_rand([4, 5, 6])] . ' inch, ' . [16, 32, 64][array_rand([16, 32, 64])] . ' GB, 1080 GHz',
                 'price' => rand(200, 300),
                 'description' => 'Lorem Ipsum ' . $i . ' is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys 
-                                    standard dummy text ever since the 1500'
+                                    standard dummy text ever since the 1500',
+                'operating_system' => 'Ios'
             ])->categories()->attach(4);
         }
         

@@ -17,8 +17,7 @@
         "laravel/framework": "5.7.*",
         "laravel/scout": "^7.1",
         "laravel/tinker": "^1.0",
-        "nicolaslopezj/searchable": "^1.10",
-        "tcg/voyager": "^1.2"
+        "nicolaslopezj/searchable": "^1.10"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

@@ -34,7 +34,7 @@
                             <div class="short-by f-left text-center">
                                 <select id="sort">
                                     <option value="" selected>Sort By</option>
-                                    <option value="{{ route('shop.index', ['category' => request()->category, 'sort' => 'low_high']) }}">Low to High</option>
+                                    <option value="{{ route('shop.index', ['category' => request()->category, 'system' => request()->system, 'sort' => 'low_high']) }}">Low to High</option>
                                     <option value="{{ route('shop.index', ['category' => request()->category, 'sort' => 'high_low']) }}">High to Low</option>
                                     <option value="{{ route('shop.index', ['category' => request()->category, 'sort' => 'latest']) }}">Latest</option>
                                     <option value="{{ route('shop.index', ['category' => request()->category, 'sort' => 'oldest']) }}">Oldest</option>
@@ -193,6 +193,11 @@
                             </div>
                             <div id="slider-range"></div>
                         </div>
+                        {{-- <div id="price">
+                        <input type="checkbox" id="checkbox" name="first" value="{{ route('shop.index', ['category' => request()->category, 'priceRange' => 'first']) }}"> 1-100<br>
+                        <input type="checkbox"  name="second" value="{{ route('shop.index', ['category' => request()->category, 'priceRange' => 'second']) }}"> 101-200<br>
+                        <input type="checkbox"  name="third" value="{{ route('shop.index', ['category' => request()->category, 'priceRange' => 'third']) }}"> 201-300<br>
+                        </div> --}}
                     </aside>
                     <!-- widget-color -->
                     <aside class="widget widget-color box-shadow mb-30">
@@ -209,15 +214,12 @@
                     <!-- operating-system -->
                     <aside class="widget operating-system box-shadow mb-30">
                         <h6 class="widget-title border-left mb-20">operating system</h6>
-                        <form action="https://demo.hasthemes.com/subas-preview/subas/action_page.php">
-                            <label><input type="checkbox" name="operating-1" value="phone-1">Windows Phone</label><br>
-                            <label><input type="checkbox" name="operating-1" value="phone-1">Bleckgerry ios</label><br>
-                            <label><input type="checkbox" name="operating-1" value="phone-1">Android</label><br>
-                            <label><input type="checkbox" name="operating-1" value="phone-1">ios</label><br>
-                            <label><input type="checkbox" name="operating-1" value="phone-1">Windows Phone</label><br>
-                            <label><input type="checkbox" name="operating-1" value="phone-1">Symban</label><br>
-                            <label class="mb-0"><input type="checkbox" name="operating-1" value="phone-1">Bleckgerry os</label><br>
-                        </form>
+                        <div id="opeatingSystem"> 
+                            <label><input type="checkbox" name="operating-system"><a href="{{ route('shop.index', ['category' => request()->category, 'sort' => request()->sort, 'system' => 'android']) }}">Android</a></label><br>    
+                            <label><input type="checkbox" name="operating-system"<a href="{{ route('shop.index', ['category' => request()->category, 'sort' => request()->sort, 'system' => 'Windows phone']) }}">Android</a>>Windows Phone</label><br>
+                            <label><input type="checkbox" name="operating-system" value="{{ route('shop.index', ['category' => request()->category, 'system' => 'Bleckgerry ios']) }}">Bleckgerry ios</label><br>
+                            <label><input type="checkbox" name="operating-system" value="{{ route('shop.index', ['category' => request()->category, 'system' => 'Ios']) }}">Ios</label><br> 
+                        </div>                    
                     </aside>
                     <!-- widget-product -->
                     <aside class="widget widget-product box-shadow">
@@ -289,6 +291,22 @@
                 }
                 return false;
             });
+
+        
+            
+           $("#operatingSystem").is('checked', function () {
+                var url = $(this).val(); // get selected value
+                if (url) { // require a URL
+                    window.location = url; // redirect
+                }
+                return false;
+            }); 
+
+            
+            
+        
+ 
         });
+
     </script>
 @stop

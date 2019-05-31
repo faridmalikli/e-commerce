@@ -11,6 +11,8 @@
 |
 */
 
+Route::match(['post', 'get'], '/admin', 'AdminController@login')->name('admin.login');
+
 Route::get('/', 'LandingPageController@index')->name('landing-page');
 
 Route::get('/shop', 'ShopController@index')->name('shop.index');
@@ -64,11 +66,6 @@ Route::get('/mailable', function () {
     return new App\Mail\OrderPlaced($order);
 });
 
-
-
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
-});
 
 Auth::routes();
 
