@@ -19,6 +19,8 @@ class RedirectIfAuthenticated
     {
         if (Auth::guard($guard)->check()) {
             return redirect('/');
+        } else {
+            return redirect()->action('AdminController@login')->with('error_message', 'Please login to access');
         }
 
         return $next($request);
