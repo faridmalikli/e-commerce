@@ -5,8 +5,19 @@
 <div id="content">
   <div id="content-header">
     <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#">Form elements</a> <a href="#" class="current">Validation</a> </div>
-    <h1>Form validation</h1>
+    <h1>Admin Settings</h1>
   </div>
+  @if (session()->has('error_message'))
+    <div class="alert alert-danger alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>{{ session()->get('error_message') }}</strong>
+    </div>
+    @endif @if (session()->has('success_message'))
+    <div class="alert alert-success alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>{{ session()->get('success_message') }}</strong>
+    </div>
+  @endif
   <div class="container-fluid"><hr>
     <div class="row-fluid">
       <div class="row-fluid">
@@ -16,7 +27,7 @@
               <h5>Update Password</h5>
             </div>
             <div class="widget-content nopadding">
-              <form class="form-horizontal" method="post" action="#" name="password_validate" id="password_validate" novalidate="novalidate">
+              <form class="form-horizontal" method="post" action="{{ route('admin.updatePwd') }}" name="password_validate" id="password_validate" novalidate="novalidate">
                 {{ csrf_field() }}
                 <div class="control-group">
                   <label class="control-label">Current Pasdword</label></label>

@@ -67,11 +67,33 @@ class AdminController extends Controller
         $data = $request->all();
         $current_password = $data['current_pwd'];
         $check_password = User::where(['role_id' => '1'])->first();
+        
         if (Hash::check($current_password, $check_password->password)) {
             echo "true"; die;
         } else {
             echo "false"; die;
         }
     }
+
+
+    public function updatePwd(Request $request)
+    {
+        if ($request->isMethod('post')) {
+            $data = $request->all();
+            // echo print_r($data); die;
+            $current_password = $data['current_pwd'];
+            $check_password = User::where(['email' => auth()->user()->email])->first();
+            
+            if (Hash::check($current_password, $check_password->password)) {
+                $password = bcrypt($data['new_pwd']);
+                User::where(['id' => $check_password->id])->update(['password' => $password]);
+                return back()->with('success_message', 'Password Updated Successfully!');
+            } else {
+                return back()->with('error_message', 'Incorrect Current Password!');
+            }
+        }
+
+    }
+
 
 }
