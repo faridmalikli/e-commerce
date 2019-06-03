@@ -17,10 +17,12 @@
             </div>
             <div class="widget-content nopadding">
               <form class="form-horizontal" method="post" action="#" name="password_validate" id="password_validate" novalidate="novalidate">
+                {{ csrf_field() }}
                 <div class="control-group">
                   <label class="control-label">Current Pasdword</label></label>
                   <div class="controls">
                     <input type="password" name="current_pwd" id="current_pwd" />
+                    <span id="pwdChk"></span>
                   </div>
                 </div>
                 <div class="control-group">
@@ -36,7 +38,7 @@
                   </div>
                 </div>
                 <div class="form-actions">
-                  <input type="submit" value="Validate" class="btn btn-success">
+                  <input type="submit" value="Update Password" class="btn btn-success">
                 </div>
               </form>
             </div>
