@@ -25,23 +25,17 @@ $(document).ready(function(){
 	$('select').select2();
 	
 	// Form Validation
-    $("#basic_validate").validate({
+    $("#add_category").validate({
 		rules:{
-			required:{
-				required:true
-			},
-			email:{
+			category_name:{
 				required:true,
-				email: true
 			},
-			date:{
+			description:{
 				required:true,
-				date: true
 			},
-			url:{
+			slug:{
 				required:true,
-				url: true
-			}
+			},
 		},
 		errorClass: "help-inline",
 		errorElement: "span",

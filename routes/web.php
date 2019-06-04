@@ -20,8 +20,14 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/admin/check-pwd', 'AdminController@chkPassword')->name('admin.chkPassword');
 
-    Route::match(['post', 'post'], '/admin/update-pwd', 'AdminController@updatePwd')->name('admin.updatePwd');
+    Route::match(['get', 'post'], '/admin/update-pwd', 'AdminController@updatePwd')->name('admin.updatePwd');
+    
+    Route::match(['get', 'post'], '/admin/add-category', 'CategoriesController@addCategory')->name('admin.addCategory');
+
+    Route::get('/admin/view-categories', 'CategoriesController@viewCategories')->name('admin.viewCategories');
 });
+
+
 
 Route::get('/logout', 'AdminController@logout')->name('admin.logout');
 

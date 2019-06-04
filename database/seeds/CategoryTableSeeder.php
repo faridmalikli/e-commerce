@@ -16,10 +16,10 @@ class CategoryTableSeeder extends Seeder
         $now = Carbon::now()->toDateTimeString();
 
         Category::insert([
-            ['name' => 'Xiaomis',  'slug' => 'xiaomis',  'created_at' => $now, 'updated_at' => $now],
-            ['name' => 'Lenovos',  'slug' => 'lenovos',  'created_at' => $now, 'updated_at' => $now],
-            ['name' => 'Samsungs', 'slug' => 'samsungs', 'created_at' => $now, 'updated_at' => $now],
-            ['name' => 'Iphones',  'slug' => 'iphones',  'created_at' => $now, 'updated_at' => $now],
+            ['name' => 'Xiaomis', 'description' => 'best', 'slug' => 'xiaomis', 'status' => '1', 'created_at' => $now, 'updated_at' => $now],
+            ['name' => 'Lenovos', 'description' => 'better', 'slug' => 'lenovos', 'status' => '2', 'created_at' => $now, 'updated_at' => $now],
+            ['name' => 'Samsungs', 'description' => 'good', 'slug' => 'samsungs', 'status' => '3', 'created_at' => $now, 'updated_at' => $now],
+            ['name' => 'Iphones', 'description' => 'poor', 'slug' => 'iphones', 'status' => '4', 'created_at' => $now, 'updated_at' => $now],
         ]);
     }
 }

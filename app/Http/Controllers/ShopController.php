@@ -33,26 +33,17 @@ class ShopController extends Controller
         //     $products = $products->where('operating_system', 'Android')->take(10);
         // }
 
-        // if (request()->sort == 'low_high') {
-        //     $products = $products->orderBy('price')->paginate($pagination);
-        // } elseif (request()->sort == 'high_low') {
-        //     $products = $products->orderBy('price', 'desc')->paginate($pagination);
-        // } elseif (request()->sort == 'latest') {
-        //     $products = $products->orderBy('id', 'desc')->paginate($pagination);
-        // } elseif (request()->sort == 'oldest') {
-        //     $products = $products->orderBy('id')->paginate($pagination);
-        // } else {
-        //     $products = $products->paginate($pagination);
-        // }
-
-        public function (Request $request, Product $products){
-            if ($request->has('category')){
-                return
-            }
+        if (request()->sort == 'low_high') {
+            $products = $products->orderBy('price')->paginate($pagination);
+        } elseif (request()->sort == 'high_low') {
+            $products = $products->orderBy('price', 'desc')->paginate($pagination);
+        } elseif (request()->sort == 'latest') {
+            $products = $products->orderBy('id', 'desc')->paginate($pagination);
+        } elseif (request()->sort == 'oldest') {
+            $products = $products->orderBy('id')->paginate($pagination);
+        } else {
+            $products = $products->paginate($pagination);
         }
-
-
-        
 
         // if (request()->priceRange == 'first') {
         //     $products = $products->whereBetween('price', [1, 100])->paginate($pagination);
@@ -113,8 +104,6 @@ class ShopController extends Controller
         return view('search-results', compact('products'));
     }
 
-
-    public function filter
 }
 
 
