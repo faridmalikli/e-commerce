@@ -33,7 +33,8 @@
                                 <tr>
                                     <th>Category Id</th>
                                     <th>Category Name</th>
-\                                   <th>Category Slug</th>
+                                    <th>Category Level</th>
+                                    <th>Category Slug</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -42,10 +43,11 @@
                                 <tr class="gradeX">
                                     <td>{{ $category->id }}</td>
                                     <td>{{ $category->name }}</td>
+                                    <td>{{ $category->parent_id }}</td>
                                     <td>{{ $category->slug }}</td>
                                     <td class="center">
-                                        <a href="#" class="btn btn-primary btn-mini">Edit</a>
-                                        <a href="#" class="btn btn-danger btn-mini">Delete</a>
+                                        <a href="{{ route('admin.editCategory', $category->id) }}" class="btn btn-primary btn-mini">Edit</a>
+                                        <a href="{{ route('admin.deleteCategory', $category->id) }}" class="delCat btn btn-danger btn-mini">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

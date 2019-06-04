@@ -5,22 +5,22 @@
 <div id="content">
   <div id="content-header">
     <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#">Form elements</a> <a href="#" class="current">Validation</a> </div>
-    <h1>Add Category</h1>
+    <h1>Edit Category</h1>
   </div>
   <div class="container-fluid"><hr>
     <div class="row-fluid">
       <div class="span12">
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
-            <h5>Add Category</h5>
+            <h5>Edit Category</h5>
           </div>
           <div class="widget-content nopadding">
-            <form class="form-horizontal" method="post" action="{{ route('admin.addCategory') }}" name="add_category" id="add_category" novalidate="novalidate">
+            <form class="form-horizontal" method="post" action="{{ route('admin.editCategory', $categoryDetails->id) }}" name="edit_category" id="edit_category" novalidate="novalidate">
               {{ csrf_field() }}
               <div class="control-group">
                 <label class="control-label">Name</label>
                 <div class="controls">
-                  <input type="text" name="category_name" id="category_name">
+                  <input type="text" name="category_name" id="category_name" value="{{ $categoryDetails->name }}">
                 </div>
               </div>
               <div class="control-group">
@@ -29,7 +29,7 @@
                   <select name="parent_id" style="width:220px;">
                     <option value="0">Main Category</option>
                     @foreach ($levels as $val)
-                      <option value="{{ $val->id }}">{{ $val->name }}</option>
+                      <option value="{{ $val->id }}" {{ $val->id == $categoryDetails->parent_id ? 'selected' : '' }}>{{ $val->name }}</option>
                     @endforeach
                   </select>
                 </div>
@@ -37,17 +37,17 @@
               <div class="control-group">
                 <label class="control-label">Descriptipn</label>
                 <div class="controls">
-                  <textarea name="description" id="description"></textarea>
+                  <textarea name="description" id="description">{{ $categoryDetails->description }}</textarea>
                 </div>
               </div>
               <div class="control-group">
                 <label class="control-label">Slug</label>
                 <div class="controls">
-                  <input type="text" name="slug" id="slug">
+                  <input type="text" name="slug" id="slug" value="{{ $categoryDetails->slug }}">
                 </div>
               </div>
               <div class="form-actions">
-                <input type="submit" value="Add Category" class="btn btn-success">
+                <input type="submit" value="Update Category" class="btn btn-success">
               </div>
             </form>
           </div>
