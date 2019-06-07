@@ -26,38 +26,52 @@ $(document).ready(function(){
 	
 	// Form Validation
     $("#add_category").validate({
-		rules:{
-			category_name:{
-				required:true,
+			rules:{
+				category_name:{
+					required:true,
+				},
+				description:{
+					required:true,
+				},
+				slug:{
+					required:true,
+				},
 			},
-			description:{
-				required:true,
+			errorClass: "help-inline",
+			errorElement: "span",
+			highlight:function(element, errorClass, validClass) {
+				$(element).parents('.control-group').addClass('error');
 			},
-			slug:{
-				required:true,
-			},
-		},
-		errorClass: "help-inline",
-		errorElement: "span",
-		highlight:function(element, errorClass, validClass) {
-			$(element).parents('.control-group').addClass('error');
-		},
-		unhighlight: function(element, errorClass, validClass) {
-			$(element).parents('.control-group').removeClass('error');
-			$(element).parents('.control-group').addClass('success');
-		}
-	});
+			unhighlight: function(element, errorClass, validClass) {
+				$(element).parents('.control-group').removeClass('error');
+				$(element).parents('.control-group').addClass('success');
+			}
+		});
 	
-	$("#add_category").validate({
+	$("#add_product").validate({
 		rules:{
-			category_name:{
+			product_name:{
 				required:true,
 			},
-			description:{
+			product_slug:{
 				required:true,
 			},
-			slug:{
+			product_code:{
 				required:true,
+			},
+			product_details:{
+				required:true,
+			},
+			product_price:{
+				required:true,
+				number:true,
+			},
+			operating_system:{
+				required:true,
+			},
+			product_quantity:{
+				required:true,
+				number:true
 			},
 		},
 		errorClass: "help-inline",

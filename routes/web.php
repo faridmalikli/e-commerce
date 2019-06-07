@@ -21,7 +21,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/check-pwd', 'AdminController@chkPassword')->name('admin.chkPassword');
 
     Route::match(['get', 'post'], '/admin/update-pwd', 'AdminController@updatePwd')->name('admin.updatePwd');
+
     
+    //Categories
     Route::match(['get', 'post'], '/admin/add-category', 'CategoriesController@addCategory')->name('admin.addCategory');
 
     Route::get('/admin/view-categories', 'CategoriesController@viewCategories')->name('admin.viewCategories');
@@ -30,6 +32,9 @@ Route::middleware('auth')->group(function () {
 
     Route::match(['get', 'post'], '/admin/delete-category/{id}', 'CategoriesController@deleteCategory')->name('admin.deleteCategory');
 
+    
+    //Product
+    Route::match(['get', 'post'], '/admin/add-product', 'ProductsController@addProduct')->name('admin.addProduct');
 });
 
 
