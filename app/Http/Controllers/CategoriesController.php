@@ -28,7 +28,7 @@ class CategoriesController extends Controller
 
     public function viewCategories()
     {
-        $categories = Category::all();
+        $categories = Category::orderBy('id','DESC')->get();
         return view('admin.categories.view_categories', compact('categories'));
     }
 

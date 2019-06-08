@@ -27,7 +27,7 @@
             <h5>Add Product</h5>
           </div>
           <div class="widget-content nopadding">
-            <form class="form-horizontal" method="post" action="{{ route('admin.addProduct') }}" name="add_product" id="add_product" novalidate="novalidate">
+            <form enctype="multipart/form-data" class="form-horizontal" method="post" action="{{ route('admin.addProduct') }}"  name="add_product" id="add_product" novalidate="novalidate">
               {{ csrf_field() }}
               <div class="control-group">
                 <label class="control-label">Under Category</label>
@@ -88,7 +88,7 @@
               <div class="control-group">
                 <label class="control-label">Image</label></label>
                 <div class="controls">
-                  <input type="file" name="file" id="file">
+                  <input type="file" name="image" id="image">
                 </div>
               </div>
               <div class="control-group">

@@ -8,17 +8,17 @@
         <h1>Categories</h1>
     </div>
     @if (session()->has('error_message'))
-            <div class="alert alert-danger alert-block">
-                <button type="button" class="close" data-dismiss="alert">×</button>	
-                <strong>{{ session()->get('error_message') }}</strong>
-            </div>
-        @endif
-        @if (session()->has('success_message'))
-            <div class="alert alert-success alert-block">
-                <button type="button" class="close" data-dismiss="alert">×</button>	
-                <strong>{{ session()->get('success_message') }}</strong>
-            </div>
-        @endif
+        <div class="alert alert-danger alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>	
+            <strong>{{ session()->get('error_message') }}</strong>
+        </div>
+    @endif
+    @if (session()->has('success_message'))
+        <div class="alert alert-success alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>	
+            <strong>{{ session()->get('success_message') }}</strong>
+        </div>
+    @endif
     <div class="container-fluid">
         <hr>
         <div class="row-fluid">
@@ -28,7 +28,9 @@
                         <h5>View Categories</h5>
                     </div>
                     <div class="widget-content nopadding">
+                    
                         <table class="table table-bordered data-table">
+                        
                             <thead>
                                 <tr>
                                     <th>Category Id</th>
@@ -38,8 +40,8 @@
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
                             @foreach ($categories as $category)
+                            <tbody>
                                 <tr class="gradeX">
                                     <td>{{ $category->id }}</td>
                                     <td>{{ $category->name }}</td>
@@ -50,9 +52,10 @@
                                         <a href="{{ route('admin.deleteCategory', $category->id) }}" class="delCat btn btn-danger btn-mini">Delete</a>
                                     </td>
                                 </tr>
-                            @endforeach
                             </tbody>
+                            @endforeach
                         </table>
+                        
                     </div>
                 </div>
             </div>

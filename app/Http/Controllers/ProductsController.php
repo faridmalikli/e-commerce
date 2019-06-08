@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Image;
 
 class ProductsController extends Controller
 {
@@ -12,6 +14,7 @@ class ProductsController extends Controller
     {
         if ($request->isMethod('post')) {
             $data = $request->all();
+            // echo "<pre>"; print_r($data); die;
             if (empty($data['category_id'])) {
                 return back()->with('error_message', 'Under category is missing!');
             }
@@ -31,7 +34,28 @@ class ProductsController extends Controller
             $product->description = $data['product_description'];
             $product->operating_system = $data['operating_system'];
             $product->quantity = $data['product_quantity'];
-            $product->image = '';
+            
+            //Upload image
+            if ($request->hasFile('image')) {
+                $image_tmp = Input::file('image');
+                if ($image_tmp->isValid()) {
+                    $extension = $image_tmp->getClientOriginalExtension();
+                    $filename = rand(111, 99999). '.' .$extension;
+                    $large_image_path = 'images/backend_images/products/large/'.$filename;
+                    $medium_image_path = 'images/backend_images/products/medium/'.$filename;
+                    $small_image_path = 'images/backend_images/products/small/'.$filename;
+                    
+                    //Resize images
+                    Image::make($image_tmp)->save($large_image_path);
+                    Image::make($image_tmp)->resize(600, 600)->save($medium_image_path);
+                    Image::make($image_tmp)->resize(300, 300)->save($small_image_path);
+
+                    //Store image name in products table
+                    $product->image = $filename;
+
+                }
+            }
+
             if (!empty($data['yesButton'])) {
                 $product->featured = 1;
             } else {

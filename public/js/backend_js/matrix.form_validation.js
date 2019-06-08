@@ -73,6 +73,9 @@ $(document).ready(function(){
 				required:true,
 				number:true
 			},
+			image:{
+				required:true,
+			},
 		},
 		errorClass: "help-inline",
 		errorElement: "span",
