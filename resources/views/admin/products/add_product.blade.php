@@ -95,8 +95,8 @@
                 <label for="checkboxes" class="control-label">Featured</label>
                 <div class="controls">
                   <div data-toggle="buttons-radio" class="btn-group">
-                    <button class="btn btn-primary" type="button" name="yesButton">Yes</button>
-                    <button class="btn btn-primary active" type="button" name="noButton">No</button>
+                    <button class="btn btn-success" type="button" name="yesButton">Yes</button>
+                    <button class="btn btn-danger active" type="button" name="noButton">No</button>
                   </div>
                 </div>
               </div>

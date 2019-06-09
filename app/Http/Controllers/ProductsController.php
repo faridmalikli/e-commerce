@@ -62,7 +62,7 @@ class ProductsController extends Controller
                 $product->featured = 0;
             }
             $product->save();
-            return back()->with('success_message', 'Product has been added successfully!');
+            return redirect('/admin/view-products')->with('success_message', 'Product has been added successfully!');
         }
 
         $categories =  Category::where('parent_id', 0)->get();
@@ -77,6 +77,19 @@ class ProductsController extends Controller
 
         return view('admin.products.add_product', compact('categories_dropdown'));
     }    
+
+
+    public function viewProducts()
+    {
+        $products = Product::orderBy('id','DESC')->get();
+        // $products = json_decode(json_encode($products));
+        foreach ($products as $key => $val) {
+            $category_name = Category::where(['id' => $val->category_id])->first();
+            $products[$key]->category_name = $category_name['name'];
+        }
+        // echo "<pre>"; print_r($products); die;
+        return view('admin.products.view_products', compact('products'));
+    }
 
 
 }
