@@ -31,7 +31,6 @@ class ProductsController extends Controller
             } else {
                 $product->description = '';
             }
-            $product->description = $data['product_description'];
             $product->operating_system = $data['operating_system'];
             $product->quantity = $data['product_quantity'];
             
@@ -52,7 +51,6 @@ class ProductsController extends Controller
 
                     //Store image name in products table
                     $product->image = $filename;
-
                 }
             }
 
@@ -65,15 +63,17 @@ class ProductsController extends Controller
             return redirect('/admin/view-products')->with('success_message', 'Product has been added successfully!');
         }
 
+        // Categories drop down start
         $categories =  Category::where('parent_id', 0)->get();
         $categories_dropdown = "<option selected disabled>Select</option>";
         foreach ($categories as $cat) {
             $categories_dropdown .= "<option value='" .$cat->id. "'>" . $cat->name . "</option>";
             $sub_categories = Category::where('parent_id', $cat->id)->get();
             foreach ($sub_categories as $sub_cat) {
-                $categories_dropdown .= "<option value='" .$suPb_cat->id. "'>&nbsp; --&nbsp;" .$sub_cat->name. "</option>";
+                $categories_dropdown .= "<option value='" .$sub_cat->id. "'>&nbsp; --&nbsp;" .$sub_cat->name. "</option>";
             }
         }
+        // Categories drop down end
 
         return view('admin.products.add_product', compact('categories_dropdown'));
     }    
@@ -101,6 +101,29 @@ class ProductsController extends Controller
             if (empty($data['category_id'])) {
                 return back()->with('error_message', 'Under category is missing!');
             }
+
+            //Upload image
+            if ($request->hasFile('image')) {
+                $image_tmp = Input::file('image');
+                if ($image_tmp->isValid()) {
+                    $extension = $image_tmp->getClientOriginalExtension();
+                    $filename = rand(111, 99999). '.' .$extension;
+                    $large_image_path = 'images/backend_images/products/large/'.$filename;
+                    $medium_image_path = 'images/backend_images/products/medium/'.$filename;
+                    $small_image_path = 'images/backend_images/products/small/'.$filename;
+                    
+                    //Resize images
+                    Image::make($image_tmp)->save($large_image_path);
+                    Image::make($image_tmp)->resize(600, 600)->save($medium_image_path);
+                    Image::make($image_tmp)->resize(300, 300)->save($small_image_path);
+                }
+            } elseif (!empty($data['current_image'])){
+                $filename = data['current_image'];
+            } else {
+                $filename = '';
+            }
+
+
             Product::where('id', $id)->update([
                 'category_id' => $data['category_id'],
                 'name' => $data['product_name'],
@@ -110,7 +133,8 @@ class ProductsController extends Controller
                 'price' => $data['product_price'],
                 'description' => $data['product_description'],
                 'operating_system' => $data['operating_system'],
-                'quantity' => $data['product_quantity']
+                'quantity' => $data['product_quantity'],
+                'image' => $filename
             ]);
             return back()->with('success_message', 'Product has been updated successfully!');
         }
@@ -118,6 +142,7 @@ class ProductsController extends Controller
         // Get product details
         $productDetails = Product::where('id', $id)->first();
 
+        // Categories drop down start
         $categories =  Category::where('parent_id', 0)->get();
         $categories_dropdown = "<option selected disabled>Select</option>";
         foreach ($categories as $cat) {
@@ -137,9 +162,17 @@ class ProductsController extends Controller
                 $categories_dropdown .= "<option value='" .$sub_cat->id. "' " .$selected. ">&nbsp; --&nbsp;" .$sub_cat->name. "</option>";
             }
         }
+        // Categories drop down end
 
         return view('admin.products.edit_product', compact('categories_dropdown', 'productDetails'));
     }
 
+    
+
+    public function deleteProductImage($id = null) 
+    {
+        Product::where('id', $id)->update(['image' => '']);
+        return back()->with('success_message', 'Product Image has been deleted successfully!');
+    }
 
 }

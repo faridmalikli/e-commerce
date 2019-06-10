@@ -66,7 +66,7 @@
                                     <td>{{ $product->featured }}</td>
                                     <td>
                                         @if(!empty($product->image))
-                                            <img src="{{ asset('public/images/backend_images/products/large/95729.jpg') }}">
+                                            <img src="{{ URL::to('/images/backend_images/products/small/'.$product->image) }}" style="width:50px;">
                                         @endif
                                     </td>
                                     <td class="center">

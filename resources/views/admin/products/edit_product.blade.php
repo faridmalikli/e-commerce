@@ -89,6 +89,11 @@
                 <label class="control-label">Image</label></label>
                 <div class="controls">
                   <input type="file" name="image" id="image">
+                  <input type="hidden" name="current_image" value="{{ $productDetails->image }}">
+                  @if(!empty($productDetails->image))
+                    <img src="{{ URL::to('/images/backend_images/products/small/'.$productDetails->image) }}" style="width:50px;">
+                    <a class="btn btn-mini btn-danger" href="{{ url('/admin/delete-product-image/'.$productDetails->id) }}">Delete Image</a>
+                  @endif
                 </div>
               </div>
               <div class="control-group">
