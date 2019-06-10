@@ -70,10 +70,31 @@
                                         @endif
                                     </td>
                                     <td class="center">
+                                        <a href="#myModal{{ $product->id }}" data-toggle="modal" class="btn btn-success btn-mini">View</a>
                                         <a href="{{ route('admin.editProduct', $product->id) }}" class="btn btn-primary btn-mini">Edit</a>
                                         <a href="{{ route('admin.deleteProduct', $product->id) }}" class="delCat btn btn-danger btn-mini">Delete</a>
                                     </td>
                                 </tr>
+                                <div id="myModal{{ $product->id }}" class="modal hide">
+                                    <div class="modal-header">
+                                        <button data-dismiss="modal" class="close" type="button">×</button>
+                                        <h3>{{ $product->name }} Full Details</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Product ID: {{ $product->id }}</p>
+                                        <p>Category ID: {{ $product->category_id }}</p>
+                                        <p>Category Name: {{ $product->category_name }}</p>
+                                        <p>Product Name: {{ $product->name }}</p>
+                                        <p>Product Slug: {{ $product->slug }}</p>
+                                        <p>Product Code: {{ $product->code }}</p>
+                                        <p>Product Details: {{ $product->details }}</p>
+                                        <p>Product Price: {{ $product->price }}</p>
+                                        <p>Product Description: {{ $product->description }}</p>
+                                        <p>Product Operating System {{ $product->operating_system }}</p>
+                                        <p>Product Quantity: {{ $product->quantity }}</p>
+                                        <p>Product Featured: {{ $product->featured }}</p>
+                                    </div>
+                                </div>
                             </tbody>
                             @endforeach
                         </table>
@@ -84,5 +105,5 @@
         </div>
     </div>
 </div>
-
+            
 @endsection

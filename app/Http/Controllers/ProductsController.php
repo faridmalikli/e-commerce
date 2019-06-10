@@ -71,7 +71,7 @@ class ProductsController extends Controller
             $categories_dropdown .= "<option value='" .$cat->id. "'>" . $cat->name . "</option>";
             $sub_categories = Category::where('parent_id', $cat->id)->get();
             foreach ($sub_categories as $sub_cat) {
-                $categories_dropdown .= "<option value='" .$sub_cat->id. "'>&nbsp; --&nbsp;" .$sub_cat->name. "</option>";
+                $categories_dropdown .= "<option value='" .$suPb_cat->id. "'>&nbsp; --&nbsp;" .$sub_cat->name. "</option>";
             }
         }
 
@@ -89,6 +89,56 @@ class ProductsController extends Controller
         }
         // echo "<pre>"; print_r($products); die;
         return view('admin.products.view_products', compact('products'));
+    }
+
+
+
+    public function editProduct(Request $request, $id = null)
+    {
+        if ($request->isMethod('post')) {
+            $data = $request->all();
+            // echo "<pre>"; print_r($data); die;
+            if (empty($data['category_id'])) {
+                return back()->with('error_message', 'Under category is missing!');
+            }
+            Product::where('id', $id)->update([
+                'category_id' => $data['category_id'],
+                'name' => $data['product_name'],
+                'slug' => $data['product_slug'],
+                'code' => $data['product_code'],
+                'details' => $data['product_details'],
+                'price' => $data['product_price'],
+                'description' => $data['product_description'],
+                'operating_system' => $data['operating_system'],
+                'quantity' => $data['product_quantity']
+            ]);
+            return back()->with('success_message', 'Product has been updated successfully!');
+        }
+
+        // Get product details
+        $productDetails = Product::where('id', $id)->first();
+
+        $categories =  Category::where('parent_id', 0)->get();
+        $categories_dropdown = "<option selected disabled>Select</option>";
+        foreach ($categories as $cat) {
+            if ($cat->id == $productDetails->category_id) {
+                $selected = 'selected';
+            } else {
+                $selected = '';
+            }
+            $categories_dropdown .= "<option value='" .$cat->id. "' " .$selected. ">" .$cat->name. "</option>";
+            $sub_categories = Category::where('parent_id', $cat->id)->get();
+            foreach ($sub_categories as $sub_cat) {
+                if ($sub_cat->id == $productDetails->category_id) {
+                    $selected = 'selected';
+                } else {
+                    $selected = '';
+                }
+                $categories_dropdown .= "<option value='" .$sub_cat->id. "' " .$selected. ">&nbsp; --&nbsp;" .$sub_cat->name. "</option>";
+            }
+        }
+
+        return view('admin.products.edit_product', compact('categories_dropdown', 'productDetails'));
     }
 
 

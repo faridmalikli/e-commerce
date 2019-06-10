@@ -82,6 +82,7 @@ function resetMenu() {
 <script src="{{ asset('js/backend_js/matrix.form_validation.js') }}"></script>
 <script src="{{ asset('js/backend_js/jquery.dataTables.min.js') }}"></script> 
 <script src="{{ asset('js/backend_js/matrix.tables.js') }}"></script>
+<script src="{{ asset('js/backend_js/js/matrix.popover.js') }}"></script>
 
 </body>
 </html>

@@ -88,6 +88,43 @@ $(document).ready(function(){
 		}
 	});
 
+	$("#edit_product").validate({
+		rules:{
+			product_name:{
+				required:true,
+			},
+			product_slug:{
+				required:true,
+			},
+			product_code:{
+				required:true,
+			},
+			product_details:{
+				required:true,
+			},
+			product_price:{
+				required:true,
+				number:true,
+			},
+			operating_system:{
+				required:true,
+			},
+			product_quantity:{
+				required:true,
+				number:true
+			},
+		},
+		errorClass: "help-inline",
+		errorElement: "span",
+		highlight:function(element, errorClass, validClass) {
+			$(element).parents('.control-group').addClass('error');
+		},
+		unhighlight: function(element, errorClass, validClass) {
+			$(element).parents('.control-group').removeClass('error');
+			$(element).parents('.control-group').addClass('success');
+		}
+	});
+
 	$("#number_validate").validate({
 		rules:{
 			min:{
