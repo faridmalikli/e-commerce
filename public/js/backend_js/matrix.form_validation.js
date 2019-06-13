@@ -186,6 +186,36 @@ $(document).ready(function(){
 			return true;
 		}
 		return false;
-	})
+	});
 
+	
+	// $('.delProduct').click(function(){
+	// 	if (confirm('Are you sure you want delete this product?')) {
+	// 		return true;
+	// 	}
+	// 	return false;
+	// })
+
+
+	$(document).on('click', '.deleteRecord', function(e){
+        var id = $(this).attr('rel');
+        var deleteFunction = $(this).attr('rel1');
+        swal({
+          title: "Are you sure?",
+		  text: "Your will not be able to recover this Record Again!",
+		  type: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  confirmButtonText: 'Yes, delete it!',
+		  cancelButtonText: 'No, cancel!',
+		  confirmButtonColor: 'btn btn-success',
+		  cancelButtonColor: 'btn btn-danger',
+		  buttonsStyling: false,
+		  reverseButtons: true
+        },
+        function(){
+            window.location.href="/admin/"+deleteFunction+"/"+id;
+        });
+    });
 });

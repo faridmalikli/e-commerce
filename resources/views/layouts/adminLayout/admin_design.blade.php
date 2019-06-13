@@ -14,6 +14,7 @@
 <link href="{{ asset('fonts/backend_fonts/font-awesome/css/font-awesome.css') }}" rel="stylesheet" />
 <link rel="stylesheet" href="{{ asset('css/jquery.gritter.css') }}" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" />
 </head>
 <body>
 
@@ -83,6 +84,8 @@ function resetMenu() {
 <script src="{{ asset('js/backend_js/jquery.dataTables.min.js') }}"></script> 
 <script src="{{ asset('js/backend_js/matrix.tables.js') }}"></script>
 <script src="{{ asset('js/backend_js/js/matrix.popover.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
 
 </body>
 </html>

@@ -40,9 +40,9 @@ Route::middleware('auth')->group(function () {
     
     Route::match(['get', 'post'], '/admin/edit-product/{id}', 'ProductsController@editProduct')->name('admin.editProduct');
 
-    Route::match(['get', 'post'], '/admin/delete-product/{id}', 'ProductsController@deleteProduct')->name('admin.deleteProduct');
-
     Route::get('/admin/delete-product-image/{id}', 'ProductsController@deleteProductImage')->name('admin.deleteProductImage');
+
+    Route::get('/admin/delete-product/{id}', 'ProductsController@deleteProduct')->name('admin.deleteProduct');
 
 });
 

@@ -72,7 +72,8 @@
                                     <td class="center">
                                         <a href="#myModal{{ $product->id }}" data-toggle="modal" class="btn btn-success btn-mini">View</a>
                                         <a href="{{ route('admin.editProduct', $product->id) }}" class="btn btn-primary btn-mini">Edit</a>
-                                        <a href="{{ route('admin.deleteProduct', $product->id) }}" class="delCat btn btn-danger btn-mini">Delete</a>
+                                        <a href="javascript:" rel="{{ $product->id }}" rel1="delete-product" class="btn btn-danger btn-mini deleteRecord">Delete</a>
+                                        {{-- href="{{ route('admin.deleteProduct', $product->id) }}" --}}
                                     </td>
                                 </tr>
                                 <div id="myModal{{ $product->id }}" class="modal hide">

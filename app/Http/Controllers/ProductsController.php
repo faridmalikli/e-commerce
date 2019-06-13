@@ -175,4 +175,11 @@ class ProductsController extends Controller
         return back()->with('success_message', 'Product Image has been deleted successfully!');
     }
 
+
+    public function deleteProduct($id = null)
+    {
+        Product::where('id', $id)->delete();
+        return back()->with('success_message', 'Product has been deleted successfully!');
+    }
+
 }
