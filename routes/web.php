@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
 
     Route::match(['get', 'post'], '/admin/edit-category/{id}', 'CategoriesController@editCategory')->name('admin.editCategory');
 
-    Route::match(['get', 'post'], '/admin/delete-category/{id}', 'CategoriesController@deleteCategory')->name('admin.deleteCategory');
+    Route::get('/admin/delete-category/{id}', 'CategoriesController@deleteCategory')->name('admin.deleteCategory');
 
     
     //Product

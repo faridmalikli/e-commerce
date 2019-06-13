@@ -181,12 +181,12 @@ $(document).ready(function(){
 		}
 	});
 
-	$('.delCat').click(function(){
-		if (confirm('Are you sure you want delete this category?')) {
-			return true;
-		}
-		return false;
-	});
+	// $('.delCat').click(function(){
+	// 	if (confirm('Are you sure you want delete this category?')) {
+	// 		return true;
+	// 	}
+	// 	return false;
+	// });
 
 	
 	// $('.delProduct').click(function(){

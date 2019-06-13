@@ -49,7 +49,8 @@
                                     <td>{{ $category->slug }}</td>
                                     <td class="center">
                                         <a href="{{ route('admin.editCategory', $category->id) }}" class="btn btn-primary btn-mini">Edit</a>
-                                        <a href="{{ route('admin.deleteCategory', $category->id) }}" class="delCat btn btn-danger btn-mini">Delete</a>
+                                        {{-- <a href="{{ route('admin.deleteCategory', $category->id) }}" class="delCat btn btn-danger btn-mini">Delete</a> --}}
+                                        <a href="javascript:" rel = "{{ $category->id }}" rel1="delete-category" class="btn btn-danger btn-mini deleteRecord">Delete</a>
                                     </td>
                                 </tr>
                             </tbody>
