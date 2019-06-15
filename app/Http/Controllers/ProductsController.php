@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Image;
 use App\Product;
 use App\Category;
+use App\ProductsAttribute;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-use Image;
+use function GuzzleHttp\json_encode;
 
 class ProductsController extends Controller
 {
@@ -181,5 +183,46 @@ class ProductsController extends Controller
         Product::where('id', $id)->delete();
         return back()->with('success_message', 'Product has been deleted successfully!');
     }
+
+    
+    public function addAttributes(Request $request, $id = null)
+    {
+        $productDetails = Product::with('attributes')->where('id', $id)->first();
+        // $productDetails = json_decode(json_encode($productDetails));
+        // echo "<pre>"; print_r($productDetails); die;
+        
+        if ($request->isMethod('post')) {
+            $data = $request->all();
+            // echo "<pre>" print_r($data); die;
+            foreach ($data['color'] as $key => $val) {
+                if (!empty($val)) {
+                    $attribute = new ProductsAttribute;
+                    $attribute->product_id = $id;
+                    $attribute->color = $val;
+                    $attribute->size = $data['size'][$key];
+                    $attribute->price = $data['price'][$key];
+                    $attribute->stock = $data['stock'][$key];
+                    $attribute->save();
+                } else {
+                    return back()->with('error_message', 'Color field must not be empty!');
+                }
+            }
+
+            return back()->with('success_message', 'Product Attributes has been added successfully!');
+
+        }
+
+        return view('admin.products.add_attributes', compact('productDetails'));
+    }
+
+    
+    
+    public function deleteAttribute($id = null) 
+    {
+        ProductsAttribute::where('id', $id)->delete();
+        return back()->with('success_message', 'Attribute has been deleted successfully!');
+    }
+
+    
 
 }

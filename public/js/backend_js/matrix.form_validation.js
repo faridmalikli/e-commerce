@@ -217,5 +217,31 @@ $(document).ready(function(){
         function(){
             window.location.href="/admin/"+deleteFunction+"/"+id;
         });
-    });
+	});
+	
+
+	$(document).ready(function() {
+		var max_fields = 10; //Maximum allowed input fields 
+		var wrapper    = $('.field_wrapper'); //Input fields wrapper
+		var add_button = $('.add_button'); //Add button class or ID
+		var x = 1; //Initial input field is set to 1
+		
+		//When user click on add input button
+		$(add_button).click(function(e){
+			e.preventDefault();
+			//Check maximum allowed input fields
+			if(x < max_fields){ 
+				x++; //input field increment
+				 //add input field
+				$(wrapper).append('<div class="field_wrapper" style="margin-left:180px; margin-top:5px;"><div><input type="text" name="color[]" id="color" placeholder="Color" style="width:120px;" /> <input type="text" name="size[]" id="size" placeholder="Size" style="width:120px;" /> <input type="text" name="price[]" id="price" placeholder="Price" style="width:120px;" /> <input type="text" name="stock[]" id="stock" placeholder="Stock" style="width:120px;" /> <a href="javascript:void(0);" class="remove_field">Remove</a></div></div>');
+			}
+		});
+		
+		//when user click on remove button
+		$(wrapper).on("click",".remove_field", function(e){ 
+			e.preventDefault();
+			$(this).parent('div').remove(); //remove input field
+			x--; //input field decrement
+		})
+	});
 });

@@ -33,6 +33,12 @@ class Product extends Model
         ],
     ];
 
+    public function attributes()
+    {
+        return $this->hasMany('App\ProductsAttribute');
+    }
+
+
     public function categories()
     {
         return $this->belongsToMany('App\Category');

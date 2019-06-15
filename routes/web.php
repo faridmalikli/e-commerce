@@ -23,7 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::match(['get', 'post'], '/admin/update-pwd', 'AdminController@updatePwd')->name('admin.updatePwd');
 
     
-    //Categories
+    // Categories Routes
     Route::match(['get', 'post'], '/admin/add-category', 'CategoriesController@addCategory')->name('admin.addCategory');
 
     Route::get('/admin/view-categories', 'CategoriesController@viewCategories')->name('admin.viewCategories');
@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/delete-category/{id}', 'CategoriesController@deleteCategory')->name('admin.deleteCategory');
 
     
-    //Product
+    // Product Routes
     Route::match(['get', 'post'], '/admin/add-product', 'ProductsController@addProduct')->name('admin.addProduct');
 
     Route::get('/admin/view-products', 'ProductsController@viewProducts')->name('admin.viewProducts');
@@ -43,6 +43,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/delete-product-image/{id}', 'ProductsController@deleteProductImage')->name('admin.deleteProductImage');
 
     Route::get('/admin/delete-product/{id}', 'ProductsController@deleteProduct')->name('admin.deleteProduct');
+
+
+    // Products Attributes Routes
+    Route::match(['get', 'post'], '/admin/add-attributes/{id}', 'ProductsController@addAttributes')->name('admin.addAttributes');
+    Route::get('/admin/delete-attribute/{id}', 'ProductsController@deleteAttribute')->name('admin.deleteAttribute');
 
 });
 
