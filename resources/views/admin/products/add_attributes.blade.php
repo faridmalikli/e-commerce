@@ -82,7 +82,7 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        @foreach ($productDetails['attributes'] as $attribute)
+                        @foreach ($product_attributes as $attribute)
                         <tbody>
                             <tr class="gradeX">
                                 <td>{{ $attribute->id }}</td>

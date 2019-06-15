@@ -188,6 +188,8 @@ class ProductsController extends Controller
     public function addAttributes(Request $request, $id = null)
     {
         $productDetails = Product::with('attributes')->where('id', $id)->first();
+
+        $product_attributes = ProductsAttribute::where('product_id', $productDetails->id)->orderBy('id', 'DESC')->get();
         // $productDetails = json_decode(json_encode($productDetails));
         // echo "<pre>"; print_r($productDetails); die;
         
@@ -212,7 +214,7 @@ class ProductsController extends Controller
 
         }
 
-        return view('admin.products.add_attributes', compact('productDetails'));
+        return view('admin.products.add_attributes', compact('productDetails', 'product_attributes'));
     }
 
     
