@@ -41,7 +41,7 @@ class ProductsController extends Controller
                 $image_tmp = Input::file('image');
                 if ($image_tmp->isValid()) {
                     $extension = $image_tmp->getClientOriginalExtension();
-                    $filename = rand(111, 99999). '.' .$extension;
+                    $filename = $product->slug. '.' .$extension;
                     $large_image_path = 'images/backend_images/products/large/'.$filename;
                     $medium_image_path = 'images/backend_images/products/medium/'.$filename;
                     $small_image_path = 'images/backend_images/products/small/'.$filename;

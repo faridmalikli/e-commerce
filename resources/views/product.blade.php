@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.frontLayout.front_design')
 
 @section('title', $product->name)
 
@@ -25,38 +25,38 @@
                             <!-- imgs-zoom-area start -->
                             <div class="col-md-5 col-sm-5 col-xs-12">
                                 <div class="imgs-zoom-area">
-                                    <img id="zoom_03" src="{{ asset('img/products/'. $product->slug .'.jpg') }}" data-zoom-image="{{ asset('img/products/'. $product->slug .'.jpg') }}" alt="">
+                                    <img id="zoom_03" src="{{ asset('images/frontend_images/img/products/'. $product->slug .'.jpg') }}" data-zoom-image="{{ asset('images/frontend_images/img/products/'. $product->slug .'.jpg') }}" alt="">
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <div id="gallery_01" class="carousel-btn slick-arrow-3 mt-30">
                                                 <div class="p-c">
-                                                    <a href="#" data-image="{{ asset('img/product/2.jpg') }}" data-zoom-image="{{ asset('img/product/2.jpg') }}">
-                                                    <img class="zoom_03" src="{{ asset('img/product/2.jpg') }}" alt="">
+                                                    <a href="#" data-image="{{ asset('images/frontend_images/img/product/2.jpg') }}" data-zoom-image="{{ asset('images/frontend_images/img/product/2.jpg') }}">
+                                                    <img class="zoom_03" src="{{ asset('images/frontend_images/img/product/2.jpg') }}" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="p-c">
-                                                    <a href="#" data-image="{{ asset('img/product/3.jpg') }}" data-zoom-image="{{ asset('img/product/3.jpg') }}">
-                                                    <img class="zoom_03" src="{{ asset('img/product/3.jpg') }}" alt="">
+                                                    <a href="#" data-image="{{ asset('images/frontend_images/img/product/3.jpg') }}" data-zoom-image="{{ asset('images/frontend_images/img/product/3.jpg') }}">
+                                                    <img class="zoom_03" src="{{ asset('images/frontend_images/img/product/3.jpg') }}" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="p-c">
-                                                    <a href="#" data-image="{{ asset('img/product/4.jpg') }}" data-zoom-image="{{ asset('img/product/4.jpg') }}">
-                                                    <img class="zoom_03" src="{{ asset('img/product/4.jpg') }}" alt="">
+                                                    <a href="#" data-image="{{ asset('images/frontend_images/img/product/4.jpg') }}" data-zoom-image="{{ asset('images/frontend_images/img/product/4.jpg') }}">
+                                                    <img class="zoom_03" src="{{ asset('images/frontend_imagess/img/product/4.jpg') }}" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="p-c">
-                                                    <a href="#" data-image="{{ asset('img/product/5.jpg') }}" data-zoom-image="{{ asset('img/product/5.jpg') }}">
-                                                    <img class="zoom_03" src="{{ asset('img/product/5.jpg') }}" alt="">
+                                                    <a href="#" data-image="{{ asset('images/frontend_images/img/product/5.jpg') }}" data-zoom-image="{{ asset('images/frontend_images/img/product/5.jpg') }}">
+                                                    <img class="zoom_03" src="{{ asset('images/frontend_images/img/product/5.jpg') }}" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="p-c">
-                                                    <a href="#" data-image="{{ asset('img/product/6.jpg') }}" data-zoom-image="{{ asset('img/product/6.jpg') }}">
-                                                    <img class="zoom_03" src="{{ asset('img/product/6.jpg') }}" alt="">
+                                                    <a href="#" data-image="{{ asset('images/frontend_images/img/product/6.jpg') }}" data-zoom-image="{{ asset('images/frontend_images/img/product/6.jpg') }}">
+                                                    <img class="zoom_03" src="{{ asset('images/frontend_images/img/product/6.jpg') }}" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="p-c">
-                                                    <a href="#" data-image="{{ asset('img/product/7.jpg') }}" data-zoom-image="{{ asset('img/product/7.jpg') }}">
-                                                    <img class="zoom_03" src="{{ asset('img/product/7.jpg') }}" alt="">
+                                                    <a href="#" data-image="{{ asset('images/frontend_images/img/product/7.jpg') }}" data-zoom-image="{{ asset('images/frontend_images/img/product/7.jpg') }}">
+                                                    <img class="zoom_03" src="{{ asset('images/frontend_images/img/product/7.jpg') }}" alt="">
                                                     </a>
                                                 </div>
                                             </div>
@@ -170,7 +170,7 @@
                                                 <!-- single comments -->
                                                 <div class="media mt-30">
                                                     <div class="media-left">
-                                                        <a href="#"><img class="media-object" src="{{ asset('img/author/1.jpg') }}" alt="#"></a>
+                                                        <a href="#"><img class="media-object" src="{{ asset('images/frontend_images/img/author/1.jpg') }}" alt="#"></a>
                                                     </div>
                                                     <div class="media-body">
                                                         <div class="clearfix">
@@ -192,7 +192,7 @@
                                                 <!-- single comments -->
                                                 <div class="media mt-30">
                                                     <div class="media-left">
-                                                        <a href="#"><img class="media-object" src="{{ asset('img/author/2.jpg') }}" alt="#"></a>
+                                                        <a href="#"><img class="media-object" src="{{ asset('images/frontend_images/img/author/2.jpg') }}" alt="#"></a>
                                                     </div>
                                                     <div class="media-body">
                                                         <div class="clearfix">
@@ -239,7 +239,7 @@
                                         <div class="product-img">
                                             <a href="{{ route('shop.show', $product->slug) }}">
                                                 <img src="{{ asset('storage/'. $product->image) }}" alt=""/>
-                                                {{-- <img src="{{ asset('img/products/'. $product->slug .'.jpg') }}" alt=""/> --}}
+                                                {{-- <img src="{{ asset('images/frontend_imagesimg/products/'. $product->slug .'.jpg') }}" alt=""/> --}}
                                             </a>
                                         </div>
                                         <div class="product-info">
@@ -361,7 +361,7 @@
                         <div class="product-item">
                             <div class="product-img">
                                 <a href="single-product.html">
-                                <img src="{{ asset('img/product/4.jpg') }}" alt=""/>
+                                <img src="{{ asset('images/frontend_images/img/product/4.jpg') }}" alt=""/>
                                 </a>
                             </div>
                             <div class="product-info">
@@ -376,7 +376,7 @@
                         <div class="product-item">
                             <div class="product-img">
                                 <a href="single-product.html">
-                                <img src="{{ asset('img/product/8.jpg') }}" alt=""/>
+                                <img src="{{ asset('images/frontend_images/img/product/8.jpg') }}" alt=""/>
                                 </a>
                             </div>
                             <div class="product-info">
@@ -391,7 +391,7 @@
                         <div class="product-item">
                             <div class="product-img">
                                 <a href="single-product.html">
-                                <img src="{{ asset('img/product/12.jpg') }}" alt=""/>
+                                <img src="{{ asset('images/frontend_images/img/product/12.jpg') }}" alt=""/>
                                 </a>
                             </div>
                             <div class="product-info">

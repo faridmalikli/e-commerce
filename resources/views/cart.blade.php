@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.frontLayout.front_design')
 
 @section('content')
 
@@ -88,7 +88,7 @@
                                                 <tr>
                                                     <td class="product-thumbnail">
                                                         <div class="pro-thumbnail-img">
-                                                            <a href="{{ route('shop.show', $item->model->slug) }}"><img src="{{ asset('img/products/'. $item->model->slug .'.jpg') }}" alt=""></a>
+                                                            <a href="{{ route('shop.show', $item->model->slug) }}"><img src="{{ asset('images/frontend_images/img/products/'. $item->model->slug .'.jpg') }}" alt=""></a>
                                                         </div>
                                                         <div class="pro-thumbnail-info text-left">
                                                             <h6 class="product-title-2">
@@ -231,7 +231,7 @@
                                                 <tr>
                                                     <td class="product-thumbnail">
                                                         <div class="pro-thumbnail-img">
-                                                            <a href="{{ route('shop.show', $item->model->slug) }}"><img src="{{ asset('img/products/'. $item->model->slug .'.jpg') }}" alt=""></a>
+                                                            <a href="{{ route('shop.show', $item->model->slug) }}"><img src="{{ asset('images/frontend_images/img/products/'. $item->model->slug .'.jpg') }}" alt=""></a>
                                                         </div>
                                                         <div class="pro-thumbnail-info text-left">
                                                             <h6 class="product-title-2">
@@ -294,7 +294,7 @@
                                                 <tr>
                                                     <td class="product-thumbnail">
                                                         <div class="pro-thumbnail-img">
-                                                            <img src="img/cart/1.jpg" alt="">
+                                                            <img src="images/frontend_images/img/cart/1.jpg" alt="">
                                                         </div>
                                                         <div class="pro-thumbnail-info text-left">
                                                             <h6 class="product-title-2">
@@ -320,7 +320,7 @@
                                                 <tr>
                                                     <td class="product-thumbnail">
                                                         <div class="pro-thumbnail-img">
-                                                            <img src="img/cart/2.jpg" alt="">
+                                                            <img src="images/frontend_images/img/cart/2.jpg" alt="">
                                                         </div>
                                                         <div class="pro-thumbnail-info text-left">
                                                             <h6 class="product-title-2">
@@ -346,7 +346,7 @@
                                                 <tr>
                                                     <td class="product-thumbnail">
                                                         <div class="pro-thumbnail-img">
-                                                            <img src="img/cart/3.jpg" alt="">
+                                                            <img src="images/frontend_images/img/cart/3.jpg" alt="">
                                                         </div>
                                                         <div class="pro-thumbnail-info text-left">
                                                             <h6 class="product-title-2">
@@ -481,10 +481,10 @@
                                                             <div class="payment-content">
                                                                 <p>Pay via PayPal; you can pay with your credit card if you don't have a PayPal account.</p>
                                                                 <ul class="payent-type mt-10">
-                                                                    <li><a href="#"><img src="img/payment/1.png" alt=""></a></li>
-                                                                    <li><a href="#"><img src="img/payment/2.png" alt=""></a></li>
-                                                                    <li><a href="#"><img src="img/payment/3.png" alt=""></a></li>
-                                                                    <li><a href="#"><img src="img/payment/4.png" alt=""></a></li>
+                                                                    <li><a href="#"><img src="images/frontend_images/img/payment/1.png" alt=""></a></li>
+                                                                    <li><a href="#"><img src="images/frontend_images/img/payment/2.png" alt=""></a></li>
+                                                                    <li><a href="#"><img src="images/frontend_images/img/payment/3.png" alt=""></a></li>
+                                                                    <li><a href="#"><img src="images/frontend_images/img/payment/4.png" alt=""></a></li>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -616,7 +616,7 @@
                                         <div class="product-item">
                                             <div class="product-img">
                                                 <a href="{{ route('shop.show', $product->slug) }}">
-                                                <img src="{{ asset('img/products/'. $product->slug .'.jpg') }}" alt=""/>
+                                                <img src="{{ asset('images/frontend_images/img/products/'. $product->slug .'.jpg') }}" alt=""/>
                                                 </a>
                                             </div>
                                             <div class="product-info">

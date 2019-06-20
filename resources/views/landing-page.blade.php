@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.frontLayout.front_design')
 
 @section('content')
 
@@ -45,7 +45,7 @@
                     <div class="up-comming-pro gray-bg clearfix">
                         <div class="up-comming-pro-img f-left">
                             <a href="#">
-                            <img src="img/up-comming/1.jpg" alt="">
+                            <img src="images/frontend_images/img/up-comming/1.jpg" alt="">
                             </a>
                         </div>
                         <div class="up-comming-pro-info f-left">
@@ -63,7 +63,7 @@
                             <span>$ 896.00</span>
                         </div>
                         <div class="banner-img">
-                            <a href="#"><img src="img/banner/1.jpg" alt=""></a>
+                            <a href="#"><img src="images/frontend_images/img/banner/1.jpg" alt=""></a>
                         </div>
                         <div class="banner-info">
                             <h3><a href="#">Product Name</a></h3>
@@ -107,7 +107,7 @@
                     <!-- single-brand-product start -->
                     <div class="col-xs-12">
                         <div class="single-brand-product">
-                            <a href="single-product.html"><img src="img/product/5.jpg" alt=""></a>
+                            <a href="single-product.html"><img src="images/frontend_images/img/product/5.jpg" alt=""></a>
                             <h3 class="brand-title text-gray">
                                 <a href="#">Brand name</a>
                             </h3>
@@ -117,7 +117,7 @@
                     <!-- single-brand-product start -->
                     <div class="col-xs-12">
                         <div class="single-brand-product">
-                            <a href="single-product.html"><img src="img/product/6.jpg" alt=""></a>
+                            <a href="single-product.html"><img src="images/frontend_images/img/product/6.jpg" alt=""></a>
                             <h3 class="brand-title text-gray">
                                 <a href="#">Brand name</a>
                             </h3>
@@ -127,7 +127,7 @@
                     <!-- single-brand-product start -->
                     <div class="col-xs-12">
                         <div class="single-brand-product">
-                            <a href="single-product.html"><img src="img/product/7.jpg" alt=""></a>
+                            <a href="single-product.html"><img src="images/frontend_images/img/product/7.jpg" alt=""></a>
                             <h3 class="brand-title text-gray">
                                 <a href="#">Brand name</a>
                             </h3>
@@ -137,7 +137,7 @@
                     <!-- single-brand-product start -->
                     <div class="col-xs-12">
                         <div class="single-brand-product">
-                            <a href="single-product.html"><img src="img/product/8.jpg" alt=""></a>
+                            <a href="single-product.html"><img src="images/frontend_images/img/product/8.jpg" alt=""></a>
                             <h3 class="brand-title text-gray">
                                 <a href="#">Brand name</a>
                             </h3>
@@ -147,7 +147,7 @@
                     <!-- single-brand-product start -->
                     <div class="col-xs-12">
                         <div class="single-brand-product">
-                            <a href="single-product.html"><img src="img/product/8.jpg" alt=""></a>
+                            <a href="single-product.html"><img src="images/frontend_images/img/product/8.jpg" alt=""></a>
                             <h3 class="brand-title text-gray">
                                 <a href="#">Brand name</a>
                             </h3>
@@ -177,7 +177,7 @@
                         <div class="product-item">
                             <div class="product-img">
                                 <a href="single-product.html">
-                                <img src="img/product/1.jpg" alt=""/>
+                                <img src="images/frontend_images/img/product/1.jpg" alt=""/>
                                 </a>
                             </div>
                             <div class="product-info">
@@ -215,7 +215,7 @@
                         <div class="product-item">
                             <div class="product-img">
                                 <a href="single-product.html">
-                                <img src="img/product/2.jpg" alt=""/>
+                                <img src="images/frontend_images/img/product/2.jpg" alt=""/>
                                 </a>
                             </div>
                             <div class="product-info">
@@ -253,7 +253,7 @@
                         <div class="product-item">
                             <div class="product-img">
                                 <a href="single-product.html">
-                                <img src="img/product/3.jpg" alt=""/>
+                                <img src="images/frontend_images/img/product/3.jpg" alt=""/>
                                 </a>
                             </div>
                             <div class="product-info">
@@ -291,7 +291,7 @@
                         <div class="product-item">
                             <div class="product-img">
                                 <a href="single-product.html">
-                                <img src="img/product/4.jpg" alt=""/>
+                                <img src="images/frontend_images/img/product/4.jpg" alt=""/>
                                 </a>
                             </div>
                             <div class="product-info">
@@ -329,7 +329,7 @@
                         <div class="product-item">
                             <div class="product-img">
                                 <a href="single-product.html">
-                                <img src="img/product/4.jpg" alt=""/>
+                                <img src="images/frontend_images/img/product/4.jpg" alt=""/>
                                 </a>
                             </div>
                             <div class="product-info">
@@ -401,7 +401,8 @@
                                 <div class="product-item">
                                     <div class="product-img">
                                         <a href="{{ route('shop.show', $product->slug) }}">
-                                        <img src="{{ asset('img/products/'. $product->slug .'.jpg') }}" alt=""/>
+                                        {{-- <img src="{{ asset('images/frontend_images/img/products/'. $product->slug .'.jpg') }}" alt=""/> --}}
+                                        <img src="{{ asset('images/backend_images/products/small/'. $product->image) }}" alt=""/>
                                         </a>
                                     </div>
                                     <div class="product-info">
@@ -462,7 +463,7 @@
                     <!-- blog-item start -->
                     <div class="col-xs-12">
                         <div class="blog-item">
-                            <img src="img/blog/1.jpg" alt="">
+                            <img src="images/frontend_images/img/blog/1.jpg" alt="">
                             <div class="blog-desc">
                                 <h5 class="blog-title"><a href="single-blog.html">dummy Blog name</a></h5>
                                 <p>There are many variations of passages of psum available, but the majority have suffered alterat on in some form, by injected humour, randomis words which don't look even slightly.</p>
@@ -487,7 +488,7 @@
                     <!-- blog-item start -->
                     <div class="col-xs-12">
                         <div class="blog-item">
-                            <img src="img/blog/2.jpg" alt="">
+                            <img src="images/frontend_images/img/blog/2.jpg" alt="">
                             <div class="blog-desc">
                                 <h5 class="blog-title"><a href="single-blog.html">dummy Blog name</a></h5>
                                 <p>There are many variations of passages of psum available, but the majority have suffered alterat on in some form, by injected humour, randomis words which don't look even slightly.</p>
@@ -512,7 +513,7 @@
                     <!-- blog-item start -->
                     <div class="col-xs-12">
                         <div class="blog-item">
-                            <img src="img/blog/3.jpg" alt="">
+                            <img src="images/frontend_images/img/blog/3.jpg" alt="">
                             <div class="blog-desc">
                                 <h5 class="blog-title"><a href="single-blog.html">dummy Blog name</a></h5>
                                 <p>There are many variations of passages of psum available, but the majority have suffered alterat on in some form, by injected humour, randomis words which don't look even slightly.</p>
@@ -537,7 +538,7 @@
                     <!-- blog-item start -->
                     <div class="col-xs-12">
                         <div class="blog-item">
-                            <img src="img/blog/1.jpg" alt="">
+                            <img src="images/frontend_images/img/blog/1.jpg" alt="">
                             <div class="blog-desc">
                                 <h5 class="blog-title"><a href="single-blog.html">dummy Blog name</a></h5>
                                 <p>There are many variations of passages of psum available, but the majority have suffered alterat on in some form, by injected humour, randomis words which don't look even slightly.</p>

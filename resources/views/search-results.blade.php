@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.frontLayout.front_design')
 
 @section('title', 'Search')
 

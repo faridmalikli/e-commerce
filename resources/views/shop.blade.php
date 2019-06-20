@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.frontLayout.front_design')
 
 @section('content')
 
@@ -57,7 +57,7 @@
                                         <div class="product-item">
                                             <div class="product-img">
                                                 <a href="{{ route('shop.show', $product->slug) }}">
-                                                    <img src="{{ asset('img/products/'. $product->slug .'.jpg') }}" alt=""/>
+                                                    <img src="{{ asset('images/frontend_images/img/products/'. $product->slug .'.jpg') }}" alt=""/>
                                                 </a>
                                             </div>
                                             <div class="product-info">
@@ -104,7 +104,7 @@
                                         <div class="shop-list product-item">
                                             <div class="product-img">
                                                 <a href="single-product.html">
-                                                    <img src="{{ asset('img/products/'. $product->slug .'.jpg') }}" alt=""/>
+                                                    <img src="{{ asset('images/frontend_images/img/products/'. $product->slug .'.jpg') }}" alt=""/>
                                                 </a>
                                             </div>
                                             <div class="product-info">
@@ -228,7 +228,7 @@
                         <div class="product-item">
                             <div class="product-img">
                                 <a href="single-product.html">
-                                <img src="{{ asset('img/products/4.jpg') }}" alt=""/>
+                                <img src="{{ asset('images/frontend_images/img/products/4.jpg') }}" alt=""/>
                                 </a>
                             </div>
                             <div class="product-info">
@@ -258,7 +258,7 @@
                         <div class="product-item">
                             <div class="product-img">
                                 <a href="single-product.html">
-                                <img src="{{ asset('img/products/12.jpg') }}" alt=""/>
+                                <img src="{{ asset('images/frontend_images/img/products/12.jpg') }}" alt=""/>
                                 </a>
                             </div>
                             <div class="product-info">
